@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="{{ asset('backend/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/bootstrap-theme.min.css') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('backend/css/font-awesome.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('backend/css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/skins/skin-blue.min.css') }}">
+    <!-- jQuery 3 -->
+    <script src="{{ asset('backend/js/jquery.min.js') }}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{ asset('backend/js/bootstrap.min.js') }}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('backend/js/adminlte.min.js') }}"></script>
+    <!-- fixies and customization -->
+    <link rel="stylesheet" href="{{ asset('backend/css/page.css') }}">
+    <script src="{{ asset('backend/js/app.js') }}"></script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <section class="content-header">
+        <h1>{{ 'Guest challenge'|trans }} #{{ id }}</h1>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-body no-padding">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <td>{{ 'Guest'|trans }}</td>
+                                    <td>{{ name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'Email'|trans }}</td>
+                                    <td>{{ email }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'Challenge'|trans }}</td>
+                                    <td>{{ challenge }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'Score'|trans }}</td>
+                                    <td>{{ score }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'Data'|trans }}</td>
+                                    <td>{{ data|json_encode }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'Created At'|trans }}</td>
+                                    <td>{{ created_at|date('d.m.Y H:i') }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'Finished At'|trans }}</td>
+                                    <td>{% if finished_at is not null %}{{ finished_at|date('d.m.Y H:i') }}{% endif %}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

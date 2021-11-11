@@ -1,0 +1,36 @@
+{% extends 'Backend/layout.html.twig' %}
+
+{% block title %}{{ 'Setting'|trans }}{% endblock %}
+
+{% block h1 %}
+    {{ 'Setting'|trans }} <small>{{ 'Basic setting'|trans }}</small>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h4>{{ 'Smart Emailing'|trans }}</h4>
+        <p>Smart Emailing is used for sending emails, compaigns and notifications. You can setup appropriate contact lists.</p>
+        <a href="{{ path('setting-smartemailing') }}" class="btn btn-primary btn-sm action-modal">{{ 'Setting'|trans }}</a>
+    </div>
+</div>
+<script>
+$(function(){
+    $('a.action-modal').fancybox({
+        type: 'ajax',
+        title: false,
+        padding: 0,
+        width: '800px',
+        height: '800px',
+        'max-height': '80%',
+        autoSize: false,
+        afterLoad: function (current, previous) {
+            if ((typeof current.content == 'string') && (current.content.indexOf('{"redirect') == 0)) {
+                var obj = jQuery.parseJSON(current.content);
+                window.location = obj.redirect;
+            }
+        }
+    });
+});
+</script>
+{% endblock %}

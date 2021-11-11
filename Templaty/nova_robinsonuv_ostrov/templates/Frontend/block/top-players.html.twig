@@ -1,0 +1,31 @@
+<ol id="top-players-list"></ol>
+
+<script>
+$(function(){
+    $.get('{{ path('graphs-top-players', {'offset': 0, 'limit': 10}) }}', function(data) {
+        if (data.status) {
+
+            // Check if something is returned
+            if(Array.isArray(data.data) && data.data.length){
+                for (var key in data.data) {
+                    var item = data.data[key];
+
+                    $('#top-players-list').append(
+                        '<li class="row">' +
+                            '<span class="column col-8 name">' + item.no + " " + item.name + '</span>' +
+                            '<span class="column col-4 score text-right">' + item.points + 
+                            ' <b>' + sklonovani(item.points, "bodu") + '</span>' +
+                        '</li>'
+                    );
+                }
+            }else{
+                $(".top").hide();
+            }
+        } else {
+            // fail
+        }
+    }).fail(function() {
+        // fail
+    });
+});
+</script>

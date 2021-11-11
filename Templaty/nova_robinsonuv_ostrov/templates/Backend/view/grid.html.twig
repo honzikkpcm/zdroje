@@ -1,0 +1,14 @@
+{% extends 'Backend/layout.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block h1 %}
+    {% if h1 is defined %}
+        {{ h1|trans }}
+    {% else %}
+        {{ title|trans }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {{ grid(grid['data'], grid['columns'], grid['setting']) }}
+{% endblock %}

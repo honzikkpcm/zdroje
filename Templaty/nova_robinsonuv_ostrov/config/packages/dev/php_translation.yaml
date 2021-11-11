@@ -1,0 +1,13 @@
+translation:
+    locales: ["cs"]
+    symfony_profiler:
+        enabled: false
+    webui:
+        enabled: true
+    edit_in_place:
+        enabled: false
+        config_name: app
+    configs:
+        app:
+            dirs: ["%kernel.project_dir%/templates/Frontend", "%kernel.project_dir%/src/Twig", "%kernel.project_dir%/src/Controller/Frontend"]
+            output_dir: "%kernel.project_dir%/translations"

@@ -1,0 +1,13 @@
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Small boxes (Stat box) -->
+                <div class="alert alert-{{ label }} alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    {{ message }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endfor %}

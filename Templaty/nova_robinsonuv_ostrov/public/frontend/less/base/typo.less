@@ -1,0 +1,87 @@
+*, a{
+	color: #fff;
+	font-family: @fontregular;
+	font-weight: normal !important;
+}
+
+h1{
+	font-size: 3.5rem;
+	font-family: @fontbold;
+	padding-bottom: 10px;
+	line-height: 4rem;
+	
+	@media screen and (max-width: 767px){
+		font-size: 2.2rem;
+		line-height: 2.7rem;
+	}
+
+	span{
+		display: block;
+		font-family: @fontregular;
+		font-size: 2.5rem;
+	
+		@media screen and (max-width: 767px){
+			padding-top: 5px;
+			font-size: 1.6rem;
+		}
+	}
+}
+
+h2{
+	font-size: 3rem;
+	padding-bottom: 25px;
+	
+	b{
+		font-weight: normal;
+		font-family: @fontbold;
+	}
+}
+
+a.blue{
+	font-size: 1.6rem;
+	color: #33E5F5;
+}
+
+a.arrow{
+	position: relative;
+	transition: .4s all ease-out;
+	padding-right: 20px;
+
+	&:hover{
+		padding-right: 30px;	
+	}
+
+	&.blue{
+		.fa-angle-right{
+			color: #33E5F5;
+			font-weight: 200;
+			position: absolute;
+    		top: 0px;
+    		right: 0;
+    		font-size: 2rem;
+		}
+	}
+}
+
+.alert-warning{
+	background: transparent;
+	font-size: 2rem;
+	padding: 50px 20px 30px;
+	font-family: @fontsemibold;
+	color: #FFF70F;
+	border: 0;
+	text-align: center;
+
+	&:before{
+		display: inline-block;
+		position: relative;
+	    top: 13px;
+	    margin-right: 10px;
+		content: " ";
+		width: 45px;
+		height: 45px;
+	    background: url("../img/hint-icon.png") no-repeat center;
+	    border: 2px #FFF70F solid;
+	    border-radius: 50%; 
+	}
+}

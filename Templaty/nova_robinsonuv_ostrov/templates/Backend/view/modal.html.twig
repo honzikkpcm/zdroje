@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="{{ asset('backend/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/bootstrap-theme.min.css') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('backend/css/font-awesome.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('backend/css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/skins/skin-blue.min.css') }}">
+    <!-- jQuery 3 -->
+    <script src="{{ asset('backend/js/jquery.min.js') }}"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="{{ asset('backend/js/jquery-ui/jquery-ui.min.js') }}"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{ asset('backend/js/bootstrap.min.js') }}"></script>
+    <!-- grids -->
+    {#
+    <script src="{{ asset('backend/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('backend/js/dataTables.bootstrap.min.js') }}"></script>
+    #}
+
+    <!-- AdminLTE App -->
+    <script src="{{ asset('backend/js/adminlte.min.js') }}"></script>
+    <!-- forms -->
+    <link rel="stylesheet" href="{{ asset('backend/css/bootstrap-datepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/bootstrap-datetimepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/select2.min.css') }}">
+    <script src="{{ asset('backend/js/moment.min.js') }}"></script>
+    <script src="{{ asset('backend/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('backend/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('backend/js/select2.full.min.js') }}"></script>
+    <!-- fixies and customization -->
+    <link rel="stylesheet" href="{{ asset('backend/css/page.css') }}">
+    <script src="{{ asset('backend/js/app.js') }}"></script>
+{% block header %}
+    <script>
+    $(function() {
+        $('form').submit(function(e){
+            e.preventDefault();
+            var $form    = $(e.target),
+                formData = new FormData(),
+                params   = $form.serializeArray(),
+                files    = $form.find('input[type="file"]');
+
+            if (files) {
+                $.each(files, function(i, file) {
+                    formData.append(file.name, file.files[0]);
+                });
+            }
+
+            $.each(params, function(i, val) {
+                formData.append(val.name, val.value);
+            });
+
+            $.ajax({
+                url: $form.attr('action'),
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'POST',
+                success: function(result) {
+                    if (result.redirect) {
+                        window.location = result.redirect;
+                    } else {
+                        $('.fancybox-inner').html(result);
+                    }
+                }
+            });
+        });
+    });
+    </script>
+{% endblock %}
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+{% if h1 is defined %}
+    <section class="content-header">
+        <h1>{{ h1 }}</h1>
+    </section>
+{% endif %}
+
+    <section class="content">
+{% block content %}
+        {% include 'Backend/block/flash.html.twig' %}
+
+        {% if form is defined %}
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        {% endif %}
+{% endblock %}
+    </section>
+</body>
+</html>
+

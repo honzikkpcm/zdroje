@@ -1,0 +1,273 @@
+{% extends 'Backend/layout.html.twig' %}
+
+{% block head %}
+    <style>
+        .controls {
+            min-height: 50px;
+            padding: 10px;
+        }
+        @media (max-width: 767px) {
+            .controls .btn-group {
+                margin-top: 10px;
+            }
+        }
+        .video-box {}
+        .video-box .video-controls {
+            margin-top: 2px;
+        }
+        .video-box .video-controls button {
+            height: 60px;
+            width: 49%;
+        }
+        #select_challenge {
+            display: inline-block;
+            width: 150px;
+            margin-top:1px;
+        }
+        @media (min-width: 767px) {
+            .pull-lg-left {
+                float: left;
+            }
+            .pull-lg-right {
+                float: right;
+            }
+        }
+    </style>
+    <script>
+    var selectedSource = 'all',
+        selectedStatus = 'new',
+        defaultOffset = 0,
+        lastOffset = 0,
+        defaultLimit = 6,
+        setting = {};
+
+    $(function(){
+        // Shows items all challenges, new status
+        renderVideos(selectedSource, selectedStatus, defaultOffset, defaultLimit);
+
+        // Shows items with the given challenge
+        $('#select_challenge').change(function() {
+            selectedSource = $(this).val();
+            clearVideos();
+            renderVideos(selectedSource, selectedStatus, defaultOffset, defaultLimit);
+        });
+
+        // Shows items with the given status (new, approved, rejected or all)
+        $('button[data-status]').click(function() {
+            var newStatus = $(this).attr('data-status');
+
+            if (newStatus !== selectedStatus) {
+                selectedStatus = newStatus;
+                // mark button
+                $('button[data-status]').removeClass('disabled');
+                $(this).addClass('disabled');
+                // setting
+                if (selectedStatus === 'approved' || selectedStatus === 'rejected') {
+                    setting['no-controls'] = true;
+                } else if (selectedStatus === 'new') {
+                    delete setting['no-controls'];
+                } else if (selectedStatus === 'all') {
+                    delete setting['no-controls'];
+                    setting['no-hide'] = true;
+                }
+                // render
+                clearVideos();
+                renderVideos(selectedSource, selectedStatus, defaultOffset, defaultLimit);
+            }
+        });
+
+        // Shows more items
+        // Changes offset
+        $('#show-more').click(function() {
+            if ($(this).hasClass('disabled'))
+                return false;
+
+            lastOffset += defaultLimit;
+            renderVideos(selectedSource, selectedStatus, lastOffset, defaultLimit);
+        });
+    });
+
+    /**
+     * Renders videos gotten from the server
+     * @param source String all or challenge id
+     * @param status Status of item (new, approved, rejected or all)
+     * @param offset
+     * @param limit
+     */
+    function renderVideos(source, status, offset, limit) {
+        var url = "{{ path('guest-challenges-videos-get', {'source': '--source--', 'status': '--status--', 'offset': '--offset--', 'limit': '--limit--'}) }}"
+                .replace('--source--', source)
+                .replace('--status--', status)
+                .replace('--offset--', offset)
+                .replace('--limit--', limit);
+
+        $.get(url, function(data) {
+            if (data.length > 0) {
+                data.forEach(function (item) {
+                    renderVideo(item.id, item.src, item.title, item.status);
+                });
+            }
+            // when number of items is lower then default limit, set show more button to disabled, because it means
+            // there are no others items
+            if (data.length !== defaultLimit) {
+                $('#show-more').addClass('disabled');
+            }
+        });
+    }
+
+    /**
+     * Rejects item
+     * @param id
+     */
+    function reject(id) {
+        var url = "{{ path('guest-challenges-content-item-reject', {'id': '--id--'}) }}".replace('--id--', id);
+
+        $.get(url, function(data) {
+            if (data.status) {
+                if (setting['no-hide']) {
+                    switchVideoContainerButtons(id, 'reject');
+                } else {
+                    removeVideoContainer(id);
+                }
+            } else {
+                internalError();
+            }
+        }).fail(function(){
+            internalError();
+        });
+    }
+
+    /**
+     * Approves item
+     * @param id
+     */
+    function approve(id) {
+        var url = "{{ path('guest-challenges-content-item-approve', {'id': '--id--'}) }}".replace('--id--', id);
+
+        $.get(url, function(data) {
+            if (data.status) {
+                if (setting['no-hide']) {
+                    switchVideoContainerButtons(id, 'approve');
+                } else {
+                    removeVideoContainer(id);
+                }
+            } else {
+                internalError();
+            }
+        }).fail(function(){
+            internalError();
+        });
+    }
+
+    /**
+     * Shows internal error message
+     */
+    function internalError() {
+        createFlash('{{ 'Action has not been done successfully. Internal error.'|trans }}', 'danger');
+    }
+
+    /**
+     * Removes an video container slowly (action is called when the item is approved or rejected)
+     * @param id
+     */
+    function removeVideoContainer(id) {
+        $('.video-box-container[data-id=' + id + ']').hide('slow', function() {
+            $(this).remove();
+        });
+    }
+
+    /**
+     * Switches reject/approve buttons - it used in all view, when we can change status of the item
+     * @param id
+     * @param action
+     */
+    function switchVideoContainerButtons(id, action) {
+        var add = (action === 'approve') ? 'disabled' : '';
+        var remove = (action === 'approve') ? '' : 'disabled';
+
+        $('.video-box-container[data-id='+id+'] .btn-success').removeClass(remove).addClass(add);
+        $('.video-box-container[data-id='+id+'] .btn-danger').removeClass(add).addClass(remove);
+    }
+
+    /**
+     * Renders one video container
+     * @param id
+     * @param src
+     * @param title
+     * @param status
+     */
+    function renderVideo(id, src, title, status) {
+        var controls = '';
+
+        if (setting && !setting['no-controls']) {
+            var approve = (status === 'approved') ? 'disabled' : '';
+            var reject = (status === 'rejected') ? 'disabled' : '';
+
+            controls = '<div class="video-controls">'
+                    + '<button type="button" class="btn btn-success '+ approve +'" onclick="approve('+id+'); return false;"><i class="fa fa-check fa-2x"></i></button>'
+                    + '<button type="button" class="btn btn-danger pull-right '+ reject +'" onclick="reject('+id+'); return false;"><i class="fa fa-ban fa-2x"></i></button>'
+                + '</div>';
+        }
+
+        // vimeo - replace it when needed
+        var video = '<iframe src="https://player.vimeo.com/video/'+src+'?autopause=0" width="100%" height="281" frameborder="0" '
+            + 'webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+
+        $('#video_grid').append('<div data-id="'+id+'" class="video-box-container col-lg-4 col-md-2 col-12">'
+            + '<div class="thumbnail video-box">'
+                + video
+                + '<div>'+title+'</div>'
+                + controls
+            +'</div></div>');
+    }
+
+    /**
+     * Clears all videos
+     */
+    function clearVideos() {
+        $('#video_grid').html('');
+        $('#show-more').removeClass('disabled');
+        lastOffset = 0;
+    }
+    </script>
+{% endblock %}
+
+{% block h1 %}
+    {{ 'Guest videos'|trans }} <small>{{ 'Guest challenge videos'|trans }}</small>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-body no-padding">
+                <div class="controls">
+                    <div class="pull-lg-left">
+                        <select id="select_challenge" class="form-control">
+                            <option value="all">{{ 'show all'|trans }}</option>
+                            {% for id, name in challenges %}
+                                <option value="{{ id }}">{{ name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="btn-group pull-lg-right">
+                        <button type="button" data-status="new" class="btn btn-default disabled">{{ 'new'|trans }}</button>
+                        <button type="button" data-status="approved" class="btn btn-default">{{ 'approved'|trans }}</button>
+                        <button type="button" data-status="rejected" class="btn btn-default">{{ 'rejected'|trans }}</button>
+                        <button type="button" data-status="all" class="btn btn-default">{{ 'all'|trans }}</button>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+                <div style="margin: 10px">
+                    <div id="video_grid" class="row"></div>
+                    <div class="row">
+                        <div class="col-12" style="text-align: center">
+                            <button id="show-more" type="button" class="btn btn-default">{{ 'show more'|trans }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

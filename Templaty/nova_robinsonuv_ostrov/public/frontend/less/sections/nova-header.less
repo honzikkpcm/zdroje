@@ -1,0 +1,532 @@
+#nova_header_wrap {
+	position: relative;
+	max-width: 1000px;
+	min-height: 35px;
+	margin: 1em auto 0;
+	position: relative;
+	background: #f2f2f2;
+	z-index: 1000;
+	background: -moz-linear-gradient(top,#ffffff 0%, #dfdfdf 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#dfdfdf));
+	background: -webkit-linear-gradient(top,#ffffff 0%,#dfdfdf 100%);
+	background: -o-linear-gradient(top,#ffffff 0%,#dfdfdf 100%);
+	background: -ms-linear-gradient(top,#ffffff 0%,#dfdfdf 100%);
+	background: linear-gradient(top,#ffffff 0%,#dfdfdf 100%);
+	-webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
+	
+	@media only screen and (min-width: 1000px) {
+		height: 57px;
+	}
+
+	#nova_header {
+		background: url('../img/bg_white.png') 0 36px repeat-x;
+
+		@media only screen and (min-width: 1000px) {
+			background: transparent;
+		}
+
+		.logo {
+			float: left;
+			height: 35px;
+			width: 100px;
+	
+			@media only screen and (min-width: 1000px) {
+				height: 57px;
+				width: 136px;
+			}
+			
+			a {
+				background: url('../img/sp_header_footer.png') -200px 0 no-repeat;
+				display: block;
+				height: 20px;
+				margin: 8px 0 0 17px;
+				width: 65px;
+				position: relative;
+	
+				@media only screen and (min-width: 1000px) {
+					background: url('../img/sp_header_footer.png?r=2') no-repeat;
+					height: 35px;
+					margin: 10px 0 0 22px;
+					width: 112px;
+				}	
+
+				strong {
+					display: block;
+					font-size: 0;
+					line-height: 0;
+					text-decoration: none;
+					text-indent: -9999px;
+				}
+			}
+		}
+
+		.search_form {
+			display: none;
+
+			@media only screen and (min-width: 600px) {
+				display: block;
+				background: none repeat scroll 0 0 #FFFFFF;
+				border: 1px solid #909090;
+				display: inline;
+				float: right;
+				height: 25px;
+				margin: 4px 5px 0 0;
+				position: relative;
+				width: 23%;
+				min-width: 100px;
+				z-index: 2;
+			}				
+
+			@media only screen and (min-width: 769px) {
+				width: 16%;
+			}
+
+			@media only screen and (min-width: 1000px) {
+				margin: 16px 12px 0 0;
+				width: 18%;
+			}
+
+			.input{
+				&_text {
+					@media only screen and (min-width: 600px) {
+						border: 0 none;
+						color: #888888;
+						display: inline;
+						float: left;
+						font-size: 14px;
+						height: 25px;
+						line-height: 25px;
+						padding: 0 0 0 7px;
+						width: 72%;
+					}
+
+					@media only screen and (min-width: 769px) {
+						width: 60%;		
+					}
+
+					@media only screen and (min-width: 1000px) {
+						width: 72%;
+					}
+
+					&_focus {
+						@media only screen and (min-width: 600px) {
+							border: 0 none;
+							color: #888888;
+							display: inline;
+							float: left;
+							font-size: 14px;
+							height: 25px;
+							line-height: 25px;
+							padding: 0 0 0 7px;
+							width: 190px;
+						}
+					}
+				}
+				
+				&_submit {
+					@media only screen and (min-width: 600px) {
+						background: url('../img/sp_header_footer.png') -600px -100px no-repeat;
+						border: 0 none;
+						cursor: pointer;
+						display: inline;
+						float: right;
+						height: 25px;
+						width: 29px;
+					}
+				}
+			}
+		}
+		
+		#nova_menu {
+			color: #B6B6B6;
+			font-size: 14px;
+			list-style: none outside none;
+			margin: 0 0 0 15px;
+			text-align: left;
+			line-height: 35px;
+			height: 35px;
+			overflow: hidden;
+
+			@media only screen and (min-width: 1000px) {
+				font-size: 14.5px;
+				padding: 20px 0 0;
+				//height: 22px;
+				margin: 0 0 0 150px;
+				line-height: normal;
+			}
+
+			li {
+				display: inline;
+				text-align: left;
+				white-space: nowrap;
+
+				&.superstar a, .red{
+					color: #BF1815;
+					font-family: @fontmedium;
+				}
+
+				a {
+					color: #005E9A;
+					font-family: @fontregular;
+					padding: 0 0 3px;
+					text-decoration: none;
+					
+					img {
+						border: 0 none;
+					}
+				}
+
+				span {
+					padding: 0 1px;
+
+					&.break{
+						@media only screen and (min-width: 769px) {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+
+		#drop_submenu {
+			display: none;
+			left: 0;
+			padding-top: 0 !important;
+			position: absolute;
+			top: 27px;
+			width: 100%;
+			z-index: 100;
+			line-height: normal;
+
+			@media only screen and (min-width: 1000px) {
+				top: 41px;
+			}
+			
+			&.visible {
+				display: block !important;
+			}
+
+			.drop_submenu_prewrap {
+				padding-top: 8px;
+				width: 100%;
+
+				@media only screen and (min-width: 1000px) {
+					padding-top: 16px;
+				}
+			}
+
+			.drop_submenu_wrap {
+				background-color: #dadde0;
+				position: relative;
+
+				@media only screen and (min-width: 600px) {
+					background-color: #fff;
+					background: -moz-linear-gradient(center top , #FFFFFF 0%, #E4E4E4 100%) repeat scroll 0 0 transparent;
+					border: 1px solid #989898;
+					padding: 20px 0 0 25px;
+				}					
+
+				@media only screen and (min-width: 1000px) {
+					background-color: #fff;
+					background: -moz-linear-gradient(center top , #FFFFFF 0%, #E4E4E4 100%) repeat scroll 0 0 transparent;
+					border: 1px solid #989898;
+					padding: 20px 0 0 25px;
+					position: relative;
+				}
+
+				&:after {
+					@media only screen and (min-width: 600px) {
+						background: url('../img/sp_header_footer.png') no-repeat scroll -800px -92px transparent;
+						height: 18px;
+						left: 115px;
+						position: absolute;
+						top: -18px;
+						width: 31px;
+						content: "";
+					}
+
+					@media only screen and (min-width: 1000px) {
+						background: url('../img/sp_header_footer.png') -800px -100px no-repeat;
+						left: 185px;
+						top: -17px;
+					}
+				}
+			}			
+
+			.channels {
+				font-size: 0;
+				overflow: hidden;
+				white-space: normal;
+				border-top: 1px solid #fff;
+				border-bottom: 1px solid #fff;
+				height: auto;
+				margin: 0 0 15px;
+				border: 0;	
+				
+				@media only screen and (max-width: 599px) {
+					padding: 15px 15px 0;
+				}		
+				
+				li {
+					display: block;
+					float: left;
+					height: 40px;
+					vertical-align: top;
+					display: inline-block;
+					float: none;
+					margin-right: 9px;
+					margin-bottom: 9px;
+					border-bottom: 0;
+					background: url('../img/sp_header_channels_2017.png') 100% -240px no-repeat;
+
+					&.nova_cz {
+						width: 88px;
+					}
+
+					&.smichov {
+						width: 99px;
+					}
+
+					&.cinema {
+						width: 85px;
+					}
+
+					&.nova_cinema {
+						width: 85px;
+					}
+
+					&.fanda {
+						width: 82px;
+					}
+
+					&.telka {
+						width: 64px;
+					}
+
+					&.nova_sport {
+						width: 178px;
+					}
+
+					a {
+						padding: 0;
+						display: block;
+						height: 40px;
+						border-right: 0;
+					}					
+				}				
+
+				.all {
+					display: none;
+
+					@media only screen and (min-width: 1000px) {					
+						display: inline-block;
+						width: 136px;
+						height: 56px;
+						background-position: 0 -240px;
+					}
+
+					span{
+						@media only screen and (min-width: 1000px) {					
+							color: #0071B9;
+							display: block;
+							font-size: 14px;
+							font-weight: bold;
+							padding: 11px 0 0 15px;
+						}				
+					}
+				}
+
+				.nova_cz {
+					background-position: 0 0;
+				}
+				
+				.nova_cinema {
+					background-position: 0 -40px;
+				}
+				
+				.fanda {
+					background-position: 0 -80px;
+				}
+				
+				.smichov {
+					background-position: 0 -120px;
+				}
+				
+				.telka {
+					background-position: 0 -160px;
+				}
+
+				.nova_sport {
+					background-position: 0 -200px;
+				}
+
+				span {
+					display: none;
+				}
+			}
+
+			.shows {
+				margin: 0 0 2em;
+				padding: 15px 5px 15px 15px;
+
+				@media only screen and (min-width: 600px) {
+					padding: 0;
+				}
+
+				
+				&_col {
+					display: inline;
+					font-size: 14px;
+					font-weight: bold;
+	
+					@media only screen and (min-width: 600px) {
+						display: block;
+						float: left;
+						font-size: 14px;
+						font-weight: bold;
+						margin: 0 3% 0 0;
+						width: 22%;
+					}
+
+					li{
+						@media only screen and (min-width: 600px) {
+							display: block;
+							margin: 0 0 4px;
+							width: auto;
+						}
+
+						ul{
+							margin: 0 0 8px;
+						
+							li {
+								display: block;
+								float: left;
+								margin: 0 3% 4px 0;
+								white-space: normal;
+								width: 47%;
+
+								@media only screen and (min-width: 600px) {
+									display: block;
+									float: none;
+									margin: 0 0 4px;
+									width: auto;
+								}
+							}						
+						}
+
+						a {
+							color: #727783;
+							font-family: Arial, Verdana, Geneva, Helvetica, sans-serif;
+						}
+
+						span {
+							display: none;
+
+							@media only screen and (min-width: 600px) {
+								border-bottom: 1px solid #000000;
+								color: #000000;
+								display: block;
+								font-size: 20px;
+								margin: 0 0 5px;
+								padding: 0;
+							}
+						}
+					}
+				}
+			}
+			
+			li a strong {
+				color: #0B70DA;
+				font-family: Arial, Verdana, Geneva, Helvetica, sans-serif;
+			}
+
+		}
+	}
+
+	#header-user-profile {
+		display: none;
+		
+		@media only screen and (max-width: 599px) {
+			display: block;
+			position: absolute;
+			right: 5px;
+			top: 5px;
+			z-index: 10;
+		}
+
+		.logged-in{
+			.username {
+			    @media only screen and (max-width: 599px) {
+			    	display: none;
+				}
+			}
+
+			.log-out {
+			    @media only screen and (max-width: 599px) {
+					display: block;
+					width: 22px;
+					height: 22px;
+					background: url('../img/sp_header_footer.png') -430px 0 no-repeat;
+					outline: 0;
+					border: 1px solid #bebebe;
+				}
+				
+				span {
+				    @media only screen and (max-width: 599px) {
+						display: none;
+					}
+				}
+
+
+			}
+	 	}
+	}
+
+	.search_anchor {
+		display: none;
+
+	    @media only screen and (max-width: 599px) {
+			display: block;
+			position: absolute;
+			right: 15px;
+			top: 5px;
+			z-index: 10;
+			width: 22px;
+			height: 22px;
+			background: url('../img/sp_header_footer.png?r=2') -600px 0 no-repeat;
+			outline: 0;
+			border: 1px solid #bebebe;
+	    }
+
+	    span{
+		    @media only screen and (max-width: 599px) {
+				display: none;		
+			}    	
+	    }
+	}
+
+	#nav-expand {
+		display: none;
+
+		&:checked + ul#nova_menu, &.checked + ul#nova_menu {
+			height: auto;
+			overflow: visible;
+		}
+
+		&-trigger {
+			font-family: @fontregular;
+			font-size: 14px;
+			left: 195px;
+			position: absolute;
+			top: 8px;
+			color: #005e9a;
+			padding: 0 13px 0 0;
+			cursor: pointer;
+
+			@media only screen and (min-width: 769px) {
+				display: none;
+			}
+		}
+	}
+}

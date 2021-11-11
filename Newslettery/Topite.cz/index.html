@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>A Simple Responsive HTML Email</title>
+		<style type="text/css">
+
+			body {margin: 0; padding: 0; min-width: 100%!important;}
+			*[class="100p"] {width:100% !important; max-width:600px !important; height:auto !important;}   
+			.content {width: 100%; max-width:600px !important; }
+			
+			/*Two column layout*/
+			.two-column {
+				text-align: center;
+				font-size: 0;
+			}
+
+			.two-column .column {
+				width: 100%;
+				max-width: 300px;
+				display: inline-block;
+				vertical-align: top;
+			}
+
+			/*Three column layout*/
+			.three-column {
+				text-align: center;
+				font-size: 0;
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+
+			.three-column .column {
+				width: 100%;
+				max-width: 200px;
+				display: inline-block;
+				vertical-align: top;
+			}
+
+			.three-column .contents {
+				font-size: 14px;
+				text-align: center;
+			}
+
+			.three-column .text {
+				padding-top: 10px;
+			}			
+
+			@media only screen and (max-device-width: 480px) {
+				table[class=contenttable] {
+					width:320px !important;
+				}
+			}
+		
+		</style>
+</head>
+<body>
+	<table width="100%" border="0" cellpadding="0	" cellspacing="0">
+		<tr>
+			<td>
+				<!--[if (gte mso 9)|(IE)]>
+				<table width="600" align="center" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+				<td>
+				<![endif]-->
+					<table class="content" align="center" cellpadding="0" cellspacing="0" border="0">
+						<tr>
+							<td class="header">
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td height="50">&nbsp;</td>
+									</tr>
+									<tr>
+										<td align="center">
+											<img src="images/logo.gif" height="72" width="180" alt="Topite.cz" />
+										</td>
+									</tr>
+									<tr>
+										<td height="50">&nbsp;</td>
+									</tr>
+									<tr>
+										<td><img src="images/header.png" class="100p" border="0" style="display:block" /></td>
+									</tr>
+									<tr>
+										<td height="20">&nbsp;</td>
+									</tr>
+									<tr>
+										<td class="h1" style="padding: 10px; color: #de350b; font-size: 40px;font-style: normal; font-weight: bold; line-height: 50px; text-align: center; font-family: 'Helvetica';">
+												Právě jste učinili první krok k realizaci Vašeho projektu.
+										</td>
+									</tr>
+									<tr>
+										<td style="word-break: break-word; color: #757575; font-family: Helvetica; font-size: 16px; line-height: 24px; padding: 0px 18px 9px;" align="center">
+											Připravili jsme pro Vás nabídku, kterou naleznete zde:
+										</td>
+									</tr>
+									<tr>
+										<td height="20">&nbsp;</td>
+									</tr>
+									<tr>
+										<td align="center">
+											<table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;min-width:100%">
+												<tbody><tr><td valign="top" align="center" style="padding:0px 18px 18px">
+													<table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate!important;border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-right-radius:3px;border-bottom-left-radius:3px;background-color:rgb(226,51,51)">
+														<tbody><tr><td align="center" valign="middle" style="font-family:Helvetica;font-size:18px;padding:18px">
+															<a title="Objednejte si zaměření ZDARMA" href="fuck" style="display:block;font-weight:bold;letter-spacing:-0.5px;line-height:18px;text-align:center;text-decoration:none;color:#ffffff;" target="_blank">Vaše nabídka</a></td></tr>
+														</tbody>
+													</table>
+												</td></tr></tbody>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td height="20">&nbsp;</td>
+									</tr>
+									<tr>
+										<td style="word-break: break-word; color: #757575; font-family: Helvetica; font-size: 16px; line-height: 24px; text-align: left; padding: 0px 18px 9px;">
+											Na základě Vámi zadaných informací a našich zkušeností s obdobnými realizacemi obsahuje nabídka položkové rozpočty materiálu a práce. Podařilo se nám vyjednat s výrobci zajímavé ceny a díky efektivitě naší práce jsme Vám mohli započítat navíc i výraznou <strong>partnerskou slevu</strong>. Pozor, tuto slevu garantujeme pouze po dobu platnosti nabídky.
+										</td>
+									</tr>
+									<tr>
+										<td height="20">&nbsp;</td>
+									</tr>
+									<tr>
+										<td style="word-break: break-word; color: #757575; font-family: Helvetica; font-size: 16px; line-height: 24px; text-align: left; padding: 0px 18px 9px;">
+											Uvědomujeme si však, že je každý projekt jedinečný. V klidu si nabídku prostudujte a zavolejte kolegovi <strong>Michalu Svobodovi</strong> na telefonní číslo <a href="tel:420731522720" style="line-height:18px;text-align:center;color:#757575; font-weight:bold;"> 731&nbsp;522&nbsp;720</a>. Společně si upřesníte detaily a naplánujete další postup.
+										</td>
+									</tr>															
+									<tr>
+										<td height="20">&nbsp;</td>
+									</tr>															
+									<tr>
+										<td style="word-break: break-word; color: #757575; font-family: Helvetica; font-size: 16px; line-height: 24px; text-align: left; padding: 0px 18px 9px;">
+											Těšíme se, <br>
+											Web <a href="http://www.topite.cz" style="line-height:18px;text-align:center;color:#757575;">Topíte.cz</a> 
+										</td>
+									</tr>				
+									<tr>
+										<td height="40">&nbsp;</td>
+									</tr>		
+										<tr>
+											<td class="two-column">
+												<!--[if (gte mso 9)|(IE)]>
+												<table width="100%">
+												<tr>
+												<td width="50%" valign="top">
+												<![endif]-->
+													<div class="column">
+														<table width="100%">
+															<tr>
+																<td class="inner">
+																	<img src="images/people1.png">
+																</td>
+															</tr>
+															<tr>
+																<td height="10" style="font-size:4px; height: 10px;">&nbsp;</td>
+															</tr>
+															<tr>
+																<td style="color: #e23333; font-family: Helvetica, Arial; font-size: 20px;font-style: normal; font-weight: bold; line-height: 25px; letter-spacing: normal; text-align: left; padding: 0px 18px 9px;">Plánování a projekce
+																</td>
+															</tr>
+															<tr>
+																<td height="10" style="font-size:4px; height: 10px; max-height:10px;">&nbsp;</td>
+															</tr>
+															<tr>
+																<td style="word-break: break-word; color: #757575; font-family: Helvetica, Arial; font-size: 16px; line-height: 24px; text-align: left; padding: 0px 18px 9px;">																
+																	Náš kolega Ing. Karel Náprstek Vám rád pomůže s naplánováním výměny topného zdroje na nový a efektivnější.
+																</td>
+															</tr>
+														</table>
+													</div>
+												<!--[if (gte mso 9)|(IE)]>
+												</td><td width="50%" valign="top">
+												<![endif]-->
+													<div class="column">
+														<table width="100%">
+															<tr>
+																<td class="inner">
+																	<img src="images/people2.png">
+																</td>
+															</tr>
+															<tr>
+																<td height="10" style="font-size:4px; height: 10px;">&nbsp;</td>
+															</tr>
+															<tr>
+																<td style="color: #e23333; font-family: Helvetica, Arial; font-size: 20px;font-style: normal; font-weight: bold; line-height: 25px; letter-spacing: normal; text-align: left; padding: 0px 18px 9px;">Profesionální montáž
+																</td>
+															</tr>
+															<tr>
+																<td height="10" style="font-size:4px; height: 10px; max-height:10px;">&nbsp;</td>
+															</tr>
+															<tr>
+																<td style="word-break: break-word; color: #757575; font-family: Helvetica, Arial; font-size: 16px; line-height: 24px; text-align: left; padding: 0px 25px 9px;">																
+																	Nebojte se výměny topného zdroje. Provedeme ji během 2-3 dní, uklidíme po sobě, vše ukážeme a zprovozníme.
+																</td>
+															</tr>																
+															</tr>
+														</table>
+													</div>
+												<!--[if (gte mso 9)|(IE)]>
+												</td>
+												</tr>
+												</table>
+												<![endif]-->
+											</td>
+										</tr>
+										<tr>
+											<td height="20">&nbsp;</td>
+										</tr>
+										<tr>
+											<td class="one-column">
+												<table width="100%">
+													<tr>
+														<td class="inner contents" align="center">
+															<a href="https://www.topite.cz/proc-topite" style="word-break: break-word; color: #e23333; font-family: Helvetica, Arial; font-size: 20px;font-style: normal; font-weight: bold; line-height: 25px; letter-spacing: normal; ">Proč objednat montáž od Topíte.cz »</a>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>		
+										<tr>
+											<td height="40">&nbsp;</td>
+										</tr>											
+										<tr>
+											<td height="10" bgcolor="#333300" style="font-size:10px; height:10px; max-height:10px;">&nbsp;</td>
+										</tr>	
+										<tr>
+											<td class="three-column" bgcolor="#333300">
+												<!--[if (gte mso 9)|(IE)]>
+												<table width="100%">
+												<tr>
+												<td width="200" valign="top">
+												<![endif]-->
+												<div class="column">
+													<table width="100%">
+														<tr>
+															<td class="inner" align="center">
+																<table class="contents">
+																	<tr>
+																		<td style="color: #ffffff; font-family: Helvetica, Arial; font-size: 16px;" height="24" valign="middle">
+																			<a href="http://www.facebook.com/topite.cz"><img src="images/fb.png" alt="Topite.cz na Facebooku" width="24" /></a>&nbsp;&nbsp;
+																		</td>
+																		<td align="left" valign="middle" height="24">
+																			<a href="http://www.facebook.com/topite.cz" style="color: #ffffff; font-family: Helvetica, Arial; font-size: 14px; text-decoration: none;">Facebook</a>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</div>
+												<!--[if (gte mso 9)|(IE)]>
+												</td><td width="200" valign="top">
+												<![endif]-->
+												<div class="column">
+													<table width="100%">
+														<tr>
+															<td class="inner" align="center">
+																<table class="contents">
+																	<tr>
+																		<td style="color: #ffffff; font-family: Helvetica, Arial; font-size: 16px;" height="24" valign="middle">
+																			<a href="http://www.instagram.com/topite.cz"><img src="images/ig.png" alt="Topite.cz na Instagramu" width="24" /></a>&nbsp;&nbsp;
+																		</td>
+																		<td align="left" valign="middle" height="24">
+																			<a href="http://www.instagram.com/topite.cz" style="color: #ffffff; font-family: Helvetica, Arial; font-size: 14px; text-decoration: none;">Instagram</a>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</div>
+												<!--[if (gte mso 9)|(IE)]>
+												</td><td width="200" valign="top">
+												<![endif]-->
+												<div class="column">
+													<table width="100%">
+														<tr>
+															<td class="inner" align="center">
+																<table class="contents">
+																	<tr>
+																		<td style="color: #ffffff; font-family: Helvetica, Arial; font-size: 16px;" height="24" valign="middle">
+																			<a href="http://www.facebook.com/topite.cz"><img src="images/link.png" alt="Topite.cz" width="24" /></a>&nbsp;&nbsp;
+																		</td>
+																		<td align="left" valign="middle" height="24">
+																			<a href="http://topite.cz/" style="color: #ffffff; font-family: Helvetica, Arial; font-size: 14px; text-decoration: none;">Topíte.cz</a>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</div>
+												<!--[if (gte mso 9)|(IE)]>
+												</td>
+												</tr>
+												</table>
+												<![endif]-->
+											</td>
+										</tr>
+									</table>
+								</td>					                
+							</tr>
+							<tr>
+								<td style="color: #ffffff; font-family: Helvetica, Arial; font-size: 12px; padding:15px;" height="24" valign="top" bgcolor="#333300;" align="center">
+									Copyright © 2019 <a href="http://www.topite.cz" style="color: #ffffff; font-size:12px;">Topíte.cz</a> s.r.o.Veškerá práva vyhrazena.<br>
+									<a href="http://www.topite.cz" style="color: #ffffff; font-size:12px;">Topíte.cz</a> s.r.o., Paroplavební 61/3b, Praha 5 - Malá Chuchle, 159 00<br>
+									<br>
+									Chcete se od našeho e-malingu odhlásit?<br>
+									Zde se můžete <a href="#" style="color: #ffffff; font-size:12px;">odhlásit ze seznamu příjemců</a>.
+								</td>
+							</tr>
+							<tr>
+								<td height="10" bgcolor="#333300" style="font-size:10px; height:10px; max-height:10px;">&nbsp;</td>
+							</tr>								
+						</table>
+					<!--[if (gte mso 9)|(IE)]>
+					</td>
+					</tr>
+					</table>
+					<![endif]-->
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
+ 

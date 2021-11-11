@@ -1,0 +1,500 @@
+{% extends 'Backend/view/modal.html.twig' %}
+
+{% block header %}
+<script>
+    var index = 0;
+
+    {% if setting.hasSortable %}
+        function renderSortableBox(id, image) {
+            $('#sortable-box').append(
+                '<li id="item-' + id + '">'
+                    + '<div class="image">'
+                        + '<img id="img-' + id + '" data-id="'+ id +'" data-type="'+ image.type +'" src="' + image.src + '" />'
+                    + '</div>'
+                    + '<div class="controls">'
+                        + '<a href="#" title="{{ 'delete'|trans }}" onclick="$(\'#item-' + id + '\').hide(\'slow\', function(){$(this).remove()}); return false;">'
+                            + '<i class="fa fa-trash fa-2x"></i>'
+                        + '</a>'
+                    + '</div>'
+                + '</li>');
+        }
+    {% endif %}
+
+    {% if setting.hasAnswers %}
+        function renderAnswerBox(id, data) {
+            var answer = (data.answer !== null) ? data.answer : '';
+            var html = '<div id="outer-box-'+ id +'" class="col-lg-6 col-12 outer-box"><div class="inner-box">'
+
+            // data
+            html += '<div class="data">';
+
+            if (data.image) {
+                html += '<img class="image" data-type="url" id="img-'+ id +'" src="'+ data.image +'">';
+            } else {
+                html += '<div class="image-box" onclick="return uploadAnswerImage(this);">'
+                    + '<img data-type="default" class="upload" id="img-'+ id +'" src="' + '{{ asset('backend/images/cloud-upload.png') }}' +'">'
+                    + '</div>';
+            }
+
+            html += '<input type="text" value="'+ answer +'" id="answer-'+ id +'" class="form-control" placeholder="'+ '{{ 'write answer'|trans }}' + '">';
+            html += '</div>';
+
+            // controls
+            html += '<div class="controls">';
+
+            // select
+            html += '<a href="#" title="' + '{{ 'select'|trans }}' + '" onclick="checkAnswer(this); return false;">';
+
+            if (data.checked) {
+                html += '<i id="check-'+ id +'" class="fa fa-check-square-o fa-2x"></i>';
+            } else {
+                html += '<i id="check-'+ id +'" class="fa fa-square-o fa-2x"></i>';
+            }
+
+            html += '</a>';
+
+            // trash
+            html += '<a href="#" title="' + '{{ 'delete'|trans }}' + '" onclick="$(\'#outer-box-'+ id +'\').hide(\'slow\', function(){$(this).remove()}); return false;">'
+                + '<i class="fa fa-trash fa-2x"></i>'
+                + '</a>';
+
+            html += '</div></div></div>';
+
+            $('#answer-box-container').append(html);
+        }
+
+        function checkAnswer(that) {
+            {% if type == 'quiz-photo' %}
+                if ($(that).children().hasClass('fa-square-o')) {
+                    $(that).children().removeClass('fa-square-o').addClass('fa-check-square-o');
+                } else {
+                    $(that).children().removeClass('fa-check-square-o').addClass('fa-square-o');
+                }
+            {% else %}
+                $('i.fa-check-square-o').removeClass('fa-check-square-o').addClass('fa-square-o');
+                $(that).children().removeClass('fa-square-o').addClass('fa-check-square-o');
+            {% endif %}
+        }
+
+        function uploadAnswerImage(that) {
+            var file = $('#form_temporary_file');
+            file.attr('data-id', $(that).children().attr('id'));
+            file.trigger('click');
+            return false;
+        }
+    {% endif %}
+
+    $(function() {
+        var dataEncoded = $('#form_data').val();
+
+        if (dataEncoded) {
+            var data = JSON.parse(dataEncoded);
+
+            if (data.image) {
+                $('#form_image').after("<img id='uploaded-img' data-type='url' class='form-control uploaded-image' src='" + data.image + "' />");
+            }
+
+            if (data.sortable) {
+                for (var key in data.sortable) {
+                    renderSortableBox(data.sortable[key].id, {
+                        type: 'url',
+                        src: data.sortable[key].image
+                    });
+                    index = Math.max(index, data.sortable[key].id);
+                }
+            }
+            
+            if (data.video) {
+                $('#form_video').val(data.video);
+            }
+
+            if (data.answer) {
+                $('#form_answer').val(data.answer);
+            }
+
+            if (data.answers) {
+                for (var key in data.answers) {
+                    renderAnswerBox(data.answers[key].id, data.answers[key]);
+                    index = Math.max(index, data.answers[key].id);
+                }
+            }
+        }
+
+        {% if setting.hasImage %}
+            $('#form_image').change(function(){
+                var input = this;
+                // remove
+                $('#uploaded-img').remove();
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    if ($.inArray(input.files[0].type, {{ imageInternal.type|json_encode|raw }}) == -1) {
+                        alert('{{ 'Invalid file type. Only jpg or png are allowed.'|trans }}');
+                        return false;
+                    }
+
+                    if (input.files[0].size > {{ imageInternal.size }}) {
+                        alert('{{ 'Invalid file size. Maximum is 1MB.'|trans }}');
+                        return false;
+                    }
+
+                    reader.onload = function(e) {
+                        $('#form_image').after("<img id='uploaded-img' data-type='encoded' class='form-control uploaded-image' src='" + e.target.result + "' />");
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            });
+        {% endif %}
+
+        {% if setting.hasAnswers %}
+            $('#form_temporary_file').change(function(){
+                var input = this;
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    if ($.inArray(input.files[0].type, {{ imageInternal.type|json_encode|raw }}) == -1) {
+                        alert('{{ 'Invalid file type. Only jpg or png are allowed.'|trans }}');
+                        return false;
+                    }
+
+                    if (input.files[0].size > {{ imageInternal.size }}) {
+                        alert('{{ 'Invalid file size. Maximum is 1MB.'|trans }}');
+                        return false;
+                    }
+
+                    reader.onload = function(e) {
+                        var id = $('#form_temporary_file').attr('data-id');
+                        var imageObj = $('#' + id);
+                        var dataObj = imageObj.parent().parent();
+                        imageObj.parent().remove();
+                        $(dataObj).prepend("<img id='"+ id +"' data-type='encoded' class='image' src='" + e.target.result + "' />");
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            });
+
+            $('#add-answer').click(function(e){
+                e.preventDefault();
+                index++;
+
+                renderAnswerBox(index, {
+                    image: null,
+                    answer: '',
+                    checked: false
+                });
+            });
+        {% endif %}
+
+        {% if setting.hasSortable %}
+        $("#sortable-box").sortable();
+
+        $('#form_temporary_file').change(function(){
+            var input = this;
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                if ($.inArray(input.files[0].type, {{ imageInternal.type|json_encode|raw }}) == -1) {
+                    alert('{{ 'Invalid file type. Only jpg or png are allowed.'|trans }}');
+                    return false;
+                }
+
+                if (input.files[0].size > {{ imageInternal.size }}) {
+                    alert('{{ 'Invalid file size. Maximum is 1MB.'|trans }}');
+                    return false;
+                }
+
+                index++;
+
+                reader.onload = function(e) {
+                    renderSortableBox(index, {
+                        type: 'encoded',
+                        src: e.target.result
+                    });
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        });
+
+        $('#add-image').click(function(e){
+            e.preventDefault();
+            $('#form_temporary_file').trigger('click');
+        });
+        {% endif %}
+
+
+        $('form').submit(function(e){
+            e.preventDefault();
+            var form = $(e.target);
+            var params = form.serializeArray();
+            var formData = new FormData();
+            var data = {};
+
+            $.each(params, function(i, val) {
+                formData.append(val.name, val.value);
+            });
+
+            if ($('#uploaded-img').length) {
+                var img = $('#uploaded-img');
+
+                data['image'] = {
+                    type: img.attr('data-type'),
+                    src: img.attr('src')
+                };
+            }
+            if ($('#form_video').length) {
+                data['video'] = $('#form_video').val();
+            }
+            if ($('#form_answer').length) {
+                data['answer'] = $('#form_answer').val();
+            }
+
+            if ($('#answer-box-container').length) {
+                data['answers'] = [];
+
+                $('.outer-box').each(function () {
+                    var id = $(this).attr('id').substr(10);
+                    var image = $('#img-' + id);
+                    var answer = $('#answer-' + id);
+                    var check = $('#check-' + id);
+
+                    data.answers.push({
+                        id: id,
+                        image: {
+                            type: image.attr('data-type'),
+                            src: (image.attr('data-type') === 'default') ? null : image.attr('src')
+                        },
+                        answer: answer.val(),
+                        checked: check.hasClass('fa-check-square-o')
+                    });
+                });
+
+                // validate
+                var checked = false;
+                var checkedAnswers = 0;
+
+                if (data.answers.length <= 1) {
+                    alert('{{ 'Invalid number of answers. Add at least 2 answers, please.'|trans }}');
+                    return false;
+                }
+
+                for (var key in data.answers) {
+                    {% if type == 'select-photo' or type == 'guess' %}
+                        if (!data.answers[key].answer) {
+                            alert('{{ 'Empty answer. Fill in an answer, please.'|trans }}');
+                            return false;
+                        }
+                        if (!data.answers[key].image.src) {
+                            alert('{{ 'Empty answer image. Upload an image, please.'|trans }}');
+                            return false;
+                        }
+                    {% elseif type == 'quiz-abcd' %}
+                        if ((!data.answers[key].answer) && (!data.answers[key].image.src)) {
+                            alert('{{ 'Empty answer. Fill in an answer or upload an image, please.'|trans }}');
+                            return false;
+                        }
+                    {% elseif type == 'quiz-photo' %}
+                        if (!data.answers[key].image.src) {
+                            alert('{{ 'Empty answer image. Upload an image, please.'|trans }}');
+                            return false;
+                        }
+                    {% endif %}
+
+                    if (data.answers[key].checked) {
+                        checked = true;
+                        checkedAnswers++;
+                    }
+                }
+
+                {% if type == 'quiz-photo' %}
+                    if (checkedAnswers !== {{ setting.numberOfRightAnswers }}) {
+                        alert('{{ 'Select %n% answers as truthful.'|trans|replace({'%n%': setting.numberOfRightAnswers }) }}');
+                        return false;
+                    }
+                {% else %}
+                    if (!checked) {
+                        alert('{{ 'Select one answer as truthful.'|trans }}');
+                        return false;
+                    }
+                {% endif %}
+            }
+
+            if ($('#sortable-box').length) {
+                data['sortable'] = [];
+
+                $.each($('#sortable-box').sortable('toArray'), function(i, val) {
+                    var img = $('#' + val).children().children();
+                    data.sortable.push({
+                        id: img.attr('data-id'),
+                        type: img.attr('data-type'),
+                        url: img.attr('src')
+                    });
+                });
+
+                // validate
+                if (data.sortable.length <= 2) {
+                    alert('{{ 'Invalid number of images. Add at least 3 images, please.'|trans }}');
+                    return false;
+                }
+            }
+
+            formData.delete('form[data]');
+            formData.append('form[data]', JSON.stringify(data));
+
+            $.ajax({
+                url: form.attr('action'),
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'POST',
+                success: function(result) {
+                    if (result.redirect) {
+                        window.location = result.redirect;
+                    } else {
+                        $('.fancybox-inner').html(result);
+                    }
+                }
+            });
+        });
+    });
+</script>
+<style>
+{% if setting.hasAnswers %}
+    #answer-box-container {
+        margin-top: 50px;
+        margin-bottom: 10px;
+    }
+    #answer-box-container .outer-box .inner-box .data {
+        display: inline-block;
+        width: calc(100% - 30px);
+        min-height: 250px;
+    }
+    #answer-box-container .outer-box .inner-box .controls {
+        display: inline-block;
+        width: 25px;
+        vertical-align: bottom;
+        padding-bottom: 5px;
+    }
+    #answer-box-container .outer-box .inner-box .data .image-box {
+        height: 210px;
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+    }
+    #answer-box-container .inner-box {
+        border: 1px solid #ccc;
+        margin: 10px 0;
+        height: 250px;
+    }
+    #answer-box-container img.upload {
+        margin-top: 40px;
+    }
+    #answer-box-container img.image {
+        width: 100%;
+        height: 210px;
+        padding: 5px;
+        object-fit: cover;
+    }
+    #answer-box-container input[type=text] {
+        margin-left: 5px;
+        width: calc(100% - 10px);
+    }
+{% endif %}
+{% if setting.hasSortable %}
+    #sortable-box {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        margin-top: 55px;
+    }
+    #sortable-box li {
+        position: relative;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+    }
+    #sortable-box li a {
+        float: right;
+        margin: 4px;
+    }
+    #sortable-box .image {
+        display: inline-block;
+        width: calc(100% - 35px);
+        padding-left: 5px;
+        box-sizing: border-box;
+    }
+    #sortable-box .controls {
+        display: inline-block;
+        vertical-align: bottom;
+        width: 35px;
+    }
+    #sortable-box img {
+        width: 100%;
+        height: 100px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        object-fit: fill;
+    }
+{% endif %}
+</style>    
+{% endblock %}
+
+{% block content %}
+    {% include 'Backend/block/flash.html.twig' %}
+
+    {{ form_start(form) }}
+    {{ form_row(form.caption) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.score) }}
+    {{ form_row(form.active) }}
+
+    {% if setting.hasImage %}
+        <div class="form-group ">
+            <label class="control-label" for="form_image">{{ 'Image'|trans }}</label>
+            <input type="file" id="form_image" class="form-control">
+        </div>
+    {% endif %}
+
+    {% if setting.hasVideo %}
+        <div class="form-group">
+            <label class="control-label" for="form_video">{{ 'Video (hash)'|trans }}</label>
+            <input type="text" id="form_video" class="form-control">
+        </div>
+    {% endif %}
+    
+    {% if setting.hasAnswer %}
+        <div class="form-group">
+            <label class="control-label" for="form_answer">{{ 'Answer (comma separated variants)'|trans }}</label>
+            <sup class="required" title="{{ 'This is a mandatory field'|trans }}">
+                <i class="fa fa-asterisk"></i>
+            </sup>
+            <input type="text" id="form_answer" required class="form-control">
+        </div>
+    {% endif %}
+
+    {% if setting.hasAnswers %}
+        <div class="form-group ">
+            <input type="button" id="add-answer" value="{{ 'Add answer'|trans }}" class="btn btn-info pull-right">
+        </div>
+        <div id="answer-box-container" class="row"></div>
+    {% endif %}
+
+    {% if setting.hasSortable %}
+        <div class="form-group ">
+            <input type="button" id="add-image" value="{{ 'Add image'|trans }}" class="btn btn-info pull-right">
+        </div>
+        <ul id="sortable-box"></ul>
+    {% endif %}
+    
+    {% if setting.hasAnswers or setting.hasSortable %}
+        <div>
+            <input type="file" id="form_temporary_file" style="display: none">
+        </div>
+    {% endif %}
+
+    {{ form_row(form.save) }}
+    {{ form_end(form) }}
+{% endblock %}

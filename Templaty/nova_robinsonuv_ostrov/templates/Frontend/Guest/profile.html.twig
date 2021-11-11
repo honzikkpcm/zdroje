@@ -1,0 +1,155 @@
+{% extends 'Frontend/Guest/base.html.twig' %}
+
+{% block content %}
+	{{ parent() }}
+
+    {%  if not app.user.isVerified %}
+        <div class="alert alert-warning">
+            {{ "Please finish registration process according to instructions you have received in verification email. Click the button below if you do not received any email."|trans }}
+            <a href="{{ path('guest_resend_verification_email') }}">{{ 'Resend verification email'|trans }}</a>
+        </div>
+    {% endif %}
+
+    <section class="profile row">
+        <div class="col-sm-4 order-12">
+            <div class="profile-info">
+                <img src="/frontend/img/user-picture.jpg" width="124" height="124" alt="{{ app.user.name }}" />
+
+                <h1>{{ app.user.name }}<br>
+                <span>1 456 bodů</span></h1>
+                <a href="#" class="blue arrow">Upravit profil <i class="fa fa-angle-right"></i></a>
+            </div>
+                
+            <div class="profile-top">
+                <h2>Žebříček <b>TOP10</b></h2>
+                {% include 'Frontend/block/top-players.html.twig' %}
+            </div>
+
+            <div class="profile-share">
+                {% include 'Frontend/block/share-challenge.html.twig' %}
+            </div>
+        </div>
+
+        <div class="col-sm-8 order-1 challenge">
+            <h2>{{ 'Open challenges'|trans }}</h2>
+            <ul class="challenge-list">
+
+            {% for challenge in challenges %}
+                {% if challenge.finished_at is null %}
+                    <li>
+                        {{ challenge.name }}<br>
+                        {{ challenge.urlcode }}<br>
+                        {{ challenge.valid_from }}<br>
+                        {{ challenge.valid_to }}<br>
+                    </li>
+                {% endif %}
+
+            {% endfor %}
+
+            <!-- Default template for listing -->
+            {% for i in 0..2 %}
+                <li>
+                    <div class="challenge-points">
+                        <b>12</b>
+                        <span>bodů</span>
+                    </div>
+
+                    <div class="challenge-info">
+                        <h3>Kvíz - task name</h3>
+                        <h4 class="odpocet" id="odpocet-{{ i }}" data-konec="12/24/2063 15:18:40" data-hlaska="Čas vypršel!" data-zbyva="Končí za:">Končí za: 45 let 297 dnů 2 hodiny 12 minut 57 vteřin</h4>
+                    </div>
+
+                    <div class="challenge-actions">
+                        <a href="#" class="form-challenge-button">Splnit výzvu</a>
+                    </div>
+                </li>
+            {% endfor %}
+            <!-- /Default template for listing -->
+
+
+            <!-- Default template for bonusovou výzvu -->
+                <li class="challenge-bonus">
+                    <div class="challenge-points">
+                        <b>12</b>
+                        <span>bodů</span>
+                    </div>
+
+                    <div class="challenge-info">
+                        <h3><span>Bonusová výzva</span> - task name</h3>
+                        <h4 class="odpocet" id="odpocet-X" data-konec="12/24/2063 15:18:40" data-hlaska="Čas vypršel!" data-zbyva="Končí za:">Končí za: 45 let 297 dnů 2 hodiny 12 minut 57 vteřin</h4>
+
+                        <form method="post">
+                            <div class="form">
+                                <div class="form-group ">
+                                        <input type="text" id="form_key" name="form[key]" required="required" class="form-control form-input">
+                                        <label class="control-label required" for="form_name">{{ "Zde vepište klíč" | trans }}</label>
+                                        <button type="submit" class="form-challenge-button arrow"><i class="fa fa-angle-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="challenge-actions">
+                        <a href="#" class="form-challenge-button">Splnit výzvu</a>
+                    </div>
+                </li>
+            <!-- /Default template for bonusovou výzvu -->
+
+
+            </ul>
+
+            <!-- JS counter runners -->
+            <script>
+                {% for i in 0..2 %}
+                    odpocet(document.getElementById('odpocet-{{ i }}'))
+                {% endfor %}
+            </script>
+            <!-- /JS counter runners -->
+
+
+            <h2>{{ 'Done challenges'|trans }}</h2>
+
+            <ul class="challenge-list completed">
+            {% for challenge in challenges %}
+                {% if challenge.finished_at is not null %}
+                    <li>
+                        {{ challenge.name }}<br>
+                        {{ challenge.score }}<br>
+                        {{ challenge.urlcode }}<br>
+                        {{ challenge.valid_from }}<br>
+                        {{ challenge.valid_to }}<br>
+                        {{ challenge.finished_at }}<br>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            <!-- Default template for listing -->
+            {% for i in 0..2 %}
+                <li>
+                    <div class="challenge-points">
+                        <b>?</b>
+                        <span>bodů</span>
+                    </div>
+                    <div class="challenge-points total">
+                        z <span>22</span>
+                    </div>
+
+                    <div class="challenge-info">
+                        <h3>Kvíz - task name</h3>
+                        <h4 class="completed">Výzva splněna: úterý 23.2</h4>
+                    </div>
+
+                    <div class="challenge-actions">
+                        <i>Čeká na obodování</i>
+                        <a href="#" class="form-challenge-button">Detail výzvy</a>
+                    </div>
+                </li>
+            {% endfor %}
+            <!-- /Default template for listing -->
+
+            </ul>
+       </div>
+
+    </section>
+
+{% endblock %}

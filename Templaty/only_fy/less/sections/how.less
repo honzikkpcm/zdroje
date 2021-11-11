@@ -1,0 +1,481 @@
+.how{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#c50000+1,520000+100 */
+	background: #c60000; /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover, #c50000 1%, #520000 100%); /* FF3.6-15 */
+	background: -webkit-radial-gradient(center, ellipse cover, #c50000 1%,#520000 100%); /* Chrome10-25,Safari5.1-6 */
+	background: radial-gradient(ellipse at center, #c50000 1%,#520000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c50000', endColorstr='#520000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+	.container{
+		max-width: 1300px;
+		
+		@media (max-width: 1300px){
+			max-width: 100%;
+		}
+
+		&:after{
+			@media (max-width: 1300px){			
+				content: " ";
+				background: url("../img/hp-car.png") no-repeat center 41px;
+				position: relative;
+				min-height: 500px;
+				background-size: 70%;
+    			display: block;						
+			}
+
+			@media (max-width: 900px){			
+				min-height: 500px;
+				background-size: 100%;
+			}
+
+			@media (max-width: 800px){			
+				min-height: 450px;
+			}
+
+			@media (max-width: 700px){			
+				min-height: 400px;
+			}
+
+			@media (max-width: 600px){			
+				min-height: 350px;
+			}
+
+			@media (max-width: 500px){			
+				min-height: 300px;
+			}
+
+			@media (max-width: 400px){			
+				min-height: 250px;
+			}
+
+		}
+	}
+
+	*{
+		color: #fff;
+	}
+
+	h1{
+		padding-bottom: 10px  !important;
+
+		@media screen and (max-width: 500px){
+			b{
+				font-size: 3.5rem !important;
+				line-height: 4rem !important;
+			}	
+		}
+
+		@media (max-width: 1300px){				
+			padding-bottom: 20px !important;
+		}
+	}
+
+	p:not(.how_feature){
+		font-size: 1.8rem;
+		padding-bottom: 20px;
+	}
+
+	.logo-small{
+		position: absolute;
+		left: 50%;
+		transform: translate(-50%);
+		bottom: 0px;
+
+		@media (max-width: 1300px){		
+			display: none;
+		}
+	}
+
+	&_feature{
+		position: absolute;
+		font-size: 1.5rem;
+		max-width:470px;
+		display:block;
+		width:100%;
+		margin-top: -50px;
+    	margin-bottom: 50px;	
+    	opacity: 0;
+    	transition: .3s all ease-in;
+
+    	&.animation{
+    		opacity: 1;
+    	}
+
+		br{
+			@media (max-width: 1300px){
+				display: none;
+			}
+		}    	
+
+		@media (max-width: 1300px){
+			position: relative;
+			display: block;
+			width: 100%;
+			max-width: 100%  !important;
+			left: initial !important;
+			top: initial !important;
+			right: initial !important;
+			margin-left: initial !important;
+			margin-top: initial !important;
+			margin-bottom: initial !important;
+		}	
+
+		@media screen and (max-width: 1300px){
+			text-align: center !important;	
+		}
+		
+		&:before, &:after{
+			content: "";
+			height: 15px;
+			width: 15px;
+			border-radius: 50%;
+			border: 1px #fff solid;
+			position: absolute;	
+			right: 0;
+
+			@media (max-width: 1300px){
+				display: none;
+			}
+		}
+
+		&:after{
+			height: 7px;
+			width: 7px;
+			background-color: #fff;
+		}
+
+		strong, b{
+			font-size: 1.8rem;
+			display: block;
+			padding-bottom: 7px;
+			
+			&:after, &:before{
+				content: "";
+				height: 1px;
+				background: #fff;
+				display: inline-block;
+				position:absolute;
+				top: 14px;
+				width: 100%;
+				margin-left: 20px;				
+	
+				@media (max-width: 1300px){
+					display: none;
+				}
+
+
+			}
+		}
+
+		&s{
+			background: url("../img/hp-car.png") no-repeat center 41px;
+			position: relative;
+			min-height: 500px;			
+
+			@media (max-width: 1300px){
+				background: transparent;
+				margin-top: 20px;
+				min-height: 0; 
+			}
+			
+			.slick-prev, .slick-next, .slick-dots{
+				display: none !important;
+			}
+
+			@media screen and (max-width: 1300px){
+				.slick-dots{
+					margin-top: 20px;
+					display: block !important;
+					list-style: none;
+					text-align: center;
+					
+					li{
+						display: inline-block;					
+						border-radius: 50%;
+
+						button{					
+							cursor: pointer;
+							border: 1px #fff solid;
+							border-radius: 50%;
+							background: transparent;
+							font-size: 0;
+							height: 14px;
+							display: block;
+							outline: none;
+							margin: 2px;
+						}
+
+						&.slick-active{
+							background: #fff;
+						}
+					}
+				}				
+			}
+		}
+	}
+
+	&_register{
+		left: 0;
+		top: 60px;
+		margin-left: -50px;
+
+		&.animation{
+			margin-left: 0;
+			//top: 60px;
+		}
+			
+		&:before{
+			top: 54px;
+		}
+
+		&:after{
+			top: 58px;
+			right: 4px;
+		}
+
+
+		strong{
+			&:after{
+				max-width:133px;
+			}
+		
+			&:before{
+				right: 0;
+				top: 80px;
+			    transform: rotate(54deg);
+			    width: 50px;
+			    margin-top: -46px;				
+			}
+		}
+	}
+
+	&_transport{
+		top: 205px;
+		left: 0;
+		max-width: 409px;
+		
+		&:before{
+			top: 7px;
+		}
+
+		&:after{
+			top: 11px;
+			right: 4px;
+		}
+
+
+		strong{
+			&:after{
+				max-width:135px;
+				left: 240px;
+				top: 15px
+			}
+		
+			&:before{
+				display:none;		
+			}
+		}		
+	}
+
+	&_quantity{
+		top: 425px;
+		left: 0; 
+		margin-left: -50px;
+		
+		&.animation{
+			margin-left: 0;
+			//top: 425px;
+		}			
+
+		&:before{
+			top: -30px;
+		}
+
+		&:after{
+			top: -26px;
+			right: 4px;
+		}
+
+
+		strong{
+			&:after{ 
+				top:15px;
+				max-width:100px;
+				/* max-width:253px;  */
+			}
+		
+			&:before{
+				right: 3px;
+				top: 0px;
+				-webkit-transform: rotate(54deg);
+				transform: rotate(-47deg);
+				width: 42px;
+				margin-top: 0px;			
+			}
+		}		
+	}
+
+	&_meet{
+		left: 50%;
+		margin-left: 370px;
+		max-width: 345px;
+		top: 60px;
+		
+		&.animation{
+			margin-left: 320px;
+			//top: 60px;
+		}			
+
+			
+		&:before{
+			left: -254px;
+			top: 70px;
+		}
+
+		&:after{
+			top: 74px;
+			left: -250px;
+		}
+
+		strong{
+			&:after{
+				max-width:175px;
+				left: -214px;
+			}
+		
+			&:before{
+				left: -277px;
+				top: 80px;
+				-webkit-transform: rotate(-47deg);
+				transform: rotate(-47deg);
+				width: 75px;
+				margin-top: -38px;			
+			}
+		}		
+
+	}
+
+	&_price{
+		left: 50%;
+		margin-left: 320px;	
+		max-width: 345px;
+		top: 205px;
+		
+		&:before{
+			left: -66px;
+			right: 4px;
+			top: 8px;
+		}
+
+		&:after{
+			left: -62px;
+			right: 4px;
+			top: 12px;
+		}
+
+		strong{
+			&:after{
+				max-width: 32px;
+				left: -72px;
+				top: 15px;
+			}
+		
+			&:before{
+				display:none;		
+			}
+		}			
+	}
+
+	&_advert{
+		left: 50%;
+		margin-left: 370px;
+		max-width: 345px;
+		top:425px;
+
+		&.animation{
+			margin-left: 320px;
+			//top: 425px;
+		}	
+
+		&:before{
+			top: -39px;
+			left: -89px;
+		}
+
+		&:after{
+			top: -35px;
+			left: -85px;
+		}
+
+
+		strong{
+			&:after{
+				max-width: 27px;
+				left: -64px;
+				top: 15px;
+			}
+		
+			&:before{
+				left: -108px;
+				top: -5px;
+				-webkit-transform: rotate(54deg);
+				transform: rotate(-131deg);
+				width: 53px;		
+			}
+		}		
+	}
+
+	&_promo{
+		background: #000;
+		text-align:center;
+		padding-bottom: 24px;
+		
+		@media (max-width: 1300px){		
+			padding-top: 24px;			
+		}
+
+		.button{
+			top: -4px;
+			line-height: 37px;
+			font-size: 1.6rem !important;			
+
+			@media (max-width: 1300px){
+				display: inline-block;
+				vertical-align: middle;
+			}
+		}		
+	
+		h2{
+			color: #fff;
+			display:inline-block;
+			padding-right: 40px;
+			font-size: 1.6rem !important;			
+
+			strong{
+				font-size: 1.6rem !important;				
+			}
+
+			@media (max-width: 1300px){
+				padding-right: 10px;
+				line-height: 2.6rem;
+				text-align: left !important;
+				width: ~"calc(100% - 170px)";
+				vertical-align: middle;
+				
+				strong{
+					display: block;					
+				}
+			}			
+
+			@media screen and (max-width: 500px){
+				width: 100%;
+				text-align: center !important;	
+				padding-bottom: 20px;
+			}
+		}
+
+		a{
+			display: inline-block;
+		}
+	}
+}

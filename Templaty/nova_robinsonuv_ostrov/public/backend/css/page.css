@@ -1,0 +1,16 @@
+.grid-action-icon {
+    margin-top: -5px;
+    padding-right: 7px;
+    font-size: 18px;
+}
+
+img.uploaded-image {
+    width:100%;
+    height: 100px;
+    margin-top: 10px;
+}
+
+/* fix bad size of user icon when collapse sidebar */
+.sidebar-collapse .fa.fa-user-circle-o.fa-3x {
+    font-size: 2em;
+}

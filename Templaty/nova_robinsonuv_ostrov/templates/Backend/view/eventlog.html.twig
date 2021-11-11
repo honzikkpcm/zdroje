@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="{{ asset('backend/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/bootstrap-theme.min.css') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('backend/css/font-awesome.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('backend/css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/skins/skin-blue.min.css') }}">
+    <!-- jQuery 3 -->
+    <script src="{{ asset('backend/js/jquery.min.js') }}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{ asset('backend/js/bootstrap.min.js') }}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('backend/js/adminlte.min.js') }}"></script>
+    <!-- fixies and customization -->
+    <link rel="stylesheet" href="{{ asset('backend/css/page.css') }}">
+    <script src="{{ asset('backend/js/app.js') }}"></script>
+    <style>
+    pre {
+        white-space: pre-wrap;
+        border: none;
+        background: none;
+    }
+    .string { color: green; }
+    .number { color: darkorange; }
+    .boolean { color: blue; }
+    .null { color: magenta; }
+    .key { color: red; }
+    </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <section class="content-header">
+        <h1>{{ 'Event'|trans }} #{{ id }}</h1>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-body no-padding">
+                        <table class="table table-striped">
+                            <tbody>
+                            {% if layout == 'staff' %}
+                                <tr>
+                                    <td>{{ 'Staff'|trans }}</td>
+                                    <td>{{ staff }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'Resource'|trans }}</td>
+                                    <td>{{ resource }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'Action'|trans }}</td>
+                                    <td>{{ action }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td>{{ 'Guest'|trans }}</td>
+                                    <td>{{ guest }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'Type'|trans }}</td>
+                                    <td>{{ type }}</td>
+                                </tr>
+                            {% endif %}
+                                <tr>
+                                    <td>{{ 'Data'|trans }}</td>
+                                    <td data-type="json">
+                                        <pre>{{ data|json_encode(constant('JSON_PRETTY_PRINT')) }}</pre>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{ 'Created At'|trans }}</td>
+                                    <td>{{ created_at|date('d.m.Y') }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+<script>
+$(function(){
+    $('td[data-type=json] pre').each(function() {
+        var html = $(this).html();
+        $(this).html(syntaxHighlight(html));
+    });
+});
+</script>

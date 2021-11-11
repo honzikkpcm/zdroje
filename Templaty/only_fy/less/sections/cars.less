@@ -1,0 +1,166 @@
+.cars{
+	text-align: center;
+	
+	h2{
+		padding-top: 40px;
+	}
+
+	.col-md-12{
+		max-width: 1366px;
+		margin: 0 auto;
+	}
+	
+	.red{
+		margin-top: 40px;
+		margin-bottom: 30px;
+		padding: 10px 20px;
+		color: #fff;
+		font-weight: bold;
+		font-size: 1.6rem;
+		display: inline-block;
+	    background: #c60000;
+	    background: -webkit-gradient(linear, left top, left bottom, from(#c60000), to(#830b0b));
+	    background: linear-gradient(to bottom, #c60000 0%, #830b0b 100%);
+	    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c60000', endColorstr='#830b0b', GradientType=0);
+	}
+
+	.column{
+		display: inline-block;
+		font-size: 1.6rem;
+		vertical-align: top;
+		position: relative;
+		padding: 20px;
+		
+		&:before{
+			content: " ";
+			height: 200px;
+			display: block;
+			margin: 0 auto;
+			margin-bottom: 20px;
+		}
+
+		&.column-1{
+			&:before{
+			//	background: url("../img/car-s.svg") no-repeat center;
+			//  background-size: 165%;
+				background: url("../img/kredit1.svg") no-repeat center;
+				background-size: 45%;
+			}
+		}
+
+		&.column-2{
+			&:before{
+			//	background: url("../img/car-m.svg") no-repeat center;
+			//    background-size: 109%;				
+				background: url("../img/kredit2.svg") no-repeat center;
+				background-size: 35%;
+			}
+		}
+
+		&.column-3{
+			&:before{
+			//	background: url("../img/car-l.svg") no-repeat center;
+			//    background-size: 122%;				
+				background: url("../img/kredit3.svg") no-repeat center;
+				background-size: 30%;
+			}
+		}
+
+		&.column-4{
+			&:before{
+			//	background: url("../img/car-xl.svg") no-repeat center;
+			//    background-size: 106%;				
+				background: url("../img/kredit4.svg") no-repeat center;
+				background-size: 45%;
+			}
+		}
+
+		p{
+			display:block;
+		}
+
+		&s{
+			width: 100%;
+			display: block;
+			margin: 0 auto;
+		}
+
+		h3{
+			margin-top: 10px;
+			border-top: 1px #000 solid;
+			display: block;
+			font-weight: bold;
+			padding: 15px 10px;
+		}
+	}
+
+	.slick-dots{
+		display: none !important;
+	}
+
+	.video{
+		margin-top: 40px;
+		margin-bottom: 20px;
+	}
+
+	.transparent{
+		border: 1px #000 solid;
+		color: #000;
+		margin-top: 30px;
+		margin-bottom: 40px;
+		
+		&:hover{
+			color: #c60000;
+			border: 1px #c60000 solid;
+			background: #fff;
+		}
+	}
+
+	&_promo{
+		background: #000;
+		text-align:center;
+		padding-bottom: 24px;
+
+		.button{
+			top: -4px;
+			line-height: 37px;
+		}	
+
+		h2{
+			color: #fff;
+			display:inline-block;
+			padding-right: 40px;
+		}
+
+		a{
+			display: inline-block;
+		}
+	}
+
+	.slick-list{
+		width: ~"calc(100% - 70px)";
+		margin-left: 35px;
+	}
+
+
+	.slick-arrow{
+		position: absolute;
+		font-size: 0;
+		top: 50%;	
+		width: 33px;
+		height: 90px;
+		border: 0px;
+		outline: none;
+		cursor: pointer;
+	}
+
+	.slick-prev{
+		left:-10px;
+		background: url("../img/left.png") no-repeat center;
+	}
+
+	.slick-next{
+		right: -10px;
+		background: url("../img/right.png") no-repeat center;		
+	}
+}

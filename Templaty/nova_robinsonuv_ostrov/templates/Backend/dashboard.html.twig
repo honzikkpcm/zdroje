@@ -1,0 +1,156 @@
+{% extends 'Backend/layout.html.twig' %}
+
+{% block title %}{{ 'Dashboard'|trans }}{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ asset('backend/js/jqplot/jquery.jqplot.min.css') }}">
+    <script src="{{ asset('backend/js/jqplot/jquery.jqplot.min.js') }}"></script>
+    <script src="{{ asset('backend/js/jqplot/plugins/jqplot.dateAxisRenderer.js') }}"></script>
+    <script src="{{ asset('backend/js/jqplot/plugins/jqplot.barRenderer.js') }}"></script>
+    <script src="{{ asset('backend/js/jqplot/plugins/jqplot.categoryAxisRenderer.js') }}"></script>
+    <script src="{{ asset('backend/js/jqplot/plugins/jqplot.pointLabels.js') }}"></script>
+{% endblock %}
+
+{% block h1 %}
+    {{ 'Dashboard'|trans }} <small>{{ 'Key information'|trans }}</small>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    {% if activeChallenges %}
+        {% for activeChallenge in activeChallenges %}
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <a href="{{ path('challenge-tasks', {'id': activeChallenge.getId() }) }}">
+                <div class="info-box bg-aqua">
+                    <span class="info-box-icon"><i class="fa fa-grav"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">{{ activeChallenge.getName() }}</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: {{ ((today.getTimestamp - activeChallenge.getValidFrom().getTimestamp)
+                            /(activeChallenge.getValidTo().getTimestamp - activeChallenge.getValidFrom().getTimestamp))*100 }}%"></div>
+                        </div>
+                        <span class="progress-description">
+                            {{ activeChallenge.getValidFrom()|date('H:i d.m.Y') }}
+                           - {{ activeChallenge.getValidTo()|date('H:i d.m.Y') }}
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-md-12"><h4>{{ 'No active challenges found.'|trans }}</h4></div>
+    {% endif %}
+</div>
+<div class="row">
+    <div class="col-lg-6 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua">
+            <div class="inner">
+                <h3>{{ imagesForCheck }}</h3>
+                <p>{{ 'new images for checking'|trans }}</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-images"></i>
+            </div>
+            <a href="{{ path('guest-challenge-check-images') }}" class="small-box-footer">{{ 'Check images'|trans }} <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-6 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-yellow">
+            <div class="inner">
+                <h3>{{ videosForCheck }}</h3>
+                <p>{{ 'new videos for checking'|trans }}</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-ios-videocam"></i>
+            </div>
+            <a href="{{ path('guest-challenge-check-videos') }}" class="small-box-footer">{{ 'Check videos'|trans }} <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-warning">
+            <div class="box-header with-border">
+                <h3 class="box-title">{{ 'Guests per time'|trans }}</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
+            <div class="box-body chart-responsive" style="margin-left:10px;margin-right:30px">
+                <div id="guests"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-warning">
+            <div class="box-header with-border">
+                <h3 class="box-title">{{ 'Guests in challenge'|trans }}</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
+            <div class="box-body chart-responsive" style="margin-left:10px;margin-right:30px">
+                <div id="challenges"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var plot1, plot2;
+
+$(document).ready(function(){
+    // guests per day
+    var line1 = {{ guestGraph |json_encode|raw }};
+    plot1 = $.jqplot('guests', [ line1 ], {
+        axes:{
+            xaxis:{
+                renderer:$.jqplot.DateAxisRenderer
+            }
+        },
+        series:[{lineWidth:2}]
+    });
+
+    // challenges
+    $.jqplot.config.enablePlugins = true;
+    var s1 = {{ guestChallengesGraph['total'] |json_encode|raw }};
+    var s2 = {{ guestChallengesGraph['success'] |json_encode|raw }};
+    var ticks = {{ guestChallengesGraph['challenges'] |json_encode|raw }};
+
+    plot2 = $.jqplot('challenges', [s1, s2], {
+        animate: !$.jqplot.use_excanvas,
+        seriesColors:['#00749F', '#73C774'],
+        seriesDefaults:{
+            renderer:$.jqplot.BarRenderer,
+            pointLabels: { show: true }
+        },
+        axes: {
+            xaxis: {
+                renderer: $.jqplot.CategoryAxisRenderer,
+                ticks: ticks
+            }
+        },
+        highlighter: { show: false }
+    });
+
+    $('.sidebar-toggle').click(function(event, ui) {
+        setTimeout(function() {
+            plot1.replot();
+            plot2.replot();
+        }, 300);
+    });
+
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'Backend/view/modal.html.twig' %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header"><h3 class="box-title">{{ 'Basic info'|trans }}</h3></div>
+                <div class="box-body no-padding">
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <td>{{ 'Name'|trans }}</td>
+                            <td>{{ guest.name }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'Email'|trans }}</td>
+                            <td>{{ guest.email }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'Verified'|trans }}</td>
+                            <td>
+                                {% if guest.isVerified %}
+                                    <small class="label bg-green">yes</small>
+                                {% else %}
+                                    <small class="label bg-red">no</small>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'Facebook'|trans }}</td>
+                            <td>
+                                {% if guest.facebookId is not null %}
+                                    <small class="label bg-green">yes</small>
+                                {% else %}
+                                    <small class="label bg-red">no</small>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'Banned'|trans }}</td>
+                            <td>
+                                {% if guest.isBanned %}
+                                    <small class="label bg-green">yes</small>
+                                {% else %}
+                                    <small class="label bg-red">no</small>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'Score'|trans }}</td>
+                            <td>{{ total }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'Created'|trans }}</td>
+                            <td>{{ guest.createdAt|date('d.m.Y H:i') }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header"><h3 class="box-title">{{ 'Challenges'|trans }}</h3></div>
+                <div class="box-body no-padding">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td>{{ 'Name'|trans }}</td>
+                                <td>{{ 'Finished At'|trans }}</td>
+                                <td>{{ 'Score'|trans }}</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in challenges %}
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td>{% if item.finished_at is not null %}{{ item.finished_at|date('d.m.Y H:i') }}{% endif %}</td>
+                            <td>{{ item.score }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'Frontend/Guest/base.html.twig' %}
+{% form_theme form 'Frontend/form/form-theme.html.twig' %}
+
+{% block content %}
+	{{ parent() }}
+
+	<section class="jumbotron row text-center">
+		<div class="col-12">
+		    <h1>{{ 'Registrace' | trans }}</h1>
+		</div>
+	</section>
+
+	<section class="login login-reg text-center">
+		<div class="row justify-content-center">
+			<div class="col-4 mw-300 form">
+				{{ form_start(form) }}
+				{{ form_widget(form) }}
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</section>
+	
+	<script>
+		// temporary mrdka pro simulaci placeholderu
+		$("input[type=email]").addClass("empty");
+	</script>
+{% endblock %}

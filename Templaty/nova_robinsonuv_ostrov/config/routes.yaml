@@ -1,0 +1,37 @@
+# fb oauth workflow
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   guest/fb/connect
+
+hwi_oauth_connect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    prefix:   guest/fb/connect
+
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   guest/fb/login
+
+facebook_redirect_uri:
+    path: /guest/fb/login/check-facebook
+
+
+# action annotation routes
+app:
+    resource: '../src/Controller/Frontend'
+    type: 'annotation'
+# action annotation routes
+admin:
+    resource: '../src/Controller/Backend'
+    type: 'annotation'
+    prefix:   '/admin'
+
+# frontend authentication workflow routes required by main security firewall. See packages/security.yaml
+guest_login_check:
+    path: /guest/login-check
+guest_logout:
+    path: /guest/logout
+# backend authentication workflow routes
+staff_login_check:
+    path: /admin/staff/login-check
+staff_logout:
+    path: /admin/staff/logout

@@ -1,0 +1,19 @@
+{% extends 'Backend/layout.html.twig' %}
+
+{% block title %}{{ 'Setting'|trans }}{% endblock %}
+
+{% block h1 %}
+    {{ 'Maintennace'|trans }} <small>{{ 'Basic commands'|trans }}</small>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h4>{{ 'Inform guests about ending challenges'|trans }}</h4>
+        <p>{{ 'You can inform guests who do not have all challenges finnished.' }}</p>
+        <a href="{{ path('maintenance-inform-not-closed-challenges') }}"
+           onclick="return confirm('{{ 'Are you sure to send message to all guests?'|trans }}');"
+           class="btn btn-primary btn-sm">{{ 'Send message to all'|trans }}</a>
+    </div>
+</div>
+{% endblock %}

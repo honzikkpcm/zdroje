@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="cs">
+  <file id="messages.cs">
+    <unit id="NZ9orLm">
+      <notes>
+        <note category="file-source" priority="1">templates/Frontend/Guest/reset_password.html.twig:6</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Password reset</source>
+        <target>Obnova hesla</target>
+      </segment>
+    </unit>
+    <unit id="0WuIeCO">
+      <notes>
+        <note category="file-source" priority="1">templates/Frontend/Guest/login.html.twig:17</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Forgotten password?</source>
+        <target>Zapomenuté heslo?</target>
+      </segment>
+    </unit>
+    <unit id="2PPH92.">
+      <notes>
+        <note category="file-source" priority="1">templates/Frontend/Guest/login.html.twig:20</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Facebook login</source>
+        <target>Facebook přihlášení</target>
+      </segment>
+    </unit>
+    <unit id="KhahYsO">
+      <notes>
+        <note category="file-source" priority="1">templates/Frontend/Guest/login.html.twig:24</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>I do not have any account.</source>
+        <target>Ješte nemám účet.</target>
+      </segment>
+    </unit>
+    <unit id="x5Pg2aH">
+      <notes>
+        <note category="file-source" priority="1">templates/Frontend/Guest/register.html.twig:6</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Registration</source>
+        <target>Registrace</target>
+      </segment>
+    </unit>
+    <unit id=".E26u95">
+      <notes>
+        <note category="file-source" priority="1">templates/Frontend/Guest/profile.html.twig:8</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Please finish registration process according to instructions you have received in verification email. Click the button below if you do not received any email.</source>
+        <target>Prosím dokončete registraci na základě instrukcí, které Vám byly odeslány v registračním emailu. Pokud Vám žádný e-mail nedorazil, klikněte na tlačítko níže.</target>
+      </segment>
+    </unit>
+    <unit id="kAhS3ny">
+      <notes>
+        <note category="file-source" priority="1">templates/Frontend/Guest/profile.html.twig:9</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Resend verification email</source>
+        <target>Znovu odeslat registrační e-mail</target>
+      </segment>
+    </unit>
+    <unit id="1pajW90">
+      <notes>
+        <note category="file-source" priority="1">templates/Frontend/Guest/profile.html.twig:13</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Profile</source>
+        <target>Profil</target>
+      </segment>
+    </unit>
+    <unit id="7Qpg9JO">
+      <notes>
+        <note category="file-source" priority="1">templates/Frontend/Guest/profile.html.twig:17</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Open challenges</source>
+        <target>Otevřené výzvy</target>
+      </segment>
+    </unit>
+    <unit id="QJyyeeY">
+      <notes>
+        <note category="file-source" priority="1">templates/Frontend/Guest/profile.html.twig:31</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Done challenges</source>
+        <target>Splněné výzvy</target>
+      </segment>
+    </unit>
+    <unit id="lmWR.n4">
+      <notes>
+        <note category="file-source" priority="1">templates/Frontend/view/challenge.html.twig:33</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Evaluate</source>
+        <target>Vyhodnotit.</target>
+      </segment>
+    </unit>
+    <unit id="ER7qq5O">
+      <notes>
+        <note category="file-source" priority="1">templates/Frontend/view/challenge.html.twig:77</note>
+        <note category="file-source" priority="1">templates/Frontend/view/challenge.html.twig:90</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>back to challenges</source>
+        <target>zpět k výzvám</target>
+      </segment>
+    </unit>
+    <unit id="6.CMoby">
+      <notes>
+        <note category="file-source" priority="1">templates/Frontend/view/challenge.html.twig:80</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Challenge has ended</source>
+        <target>Výzva skončila</target>
+      </segment>
+    </unit>
+    <unit id="3jjm2Z1">
+      <notes>
+        <note category="file-source" priority="1">templates/Frontend/view/challenge.html.twig:83</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Ends in:</source>
+        <target>Končí za:</target>
+      </segment>
+    </unit>
+    <unit id="BCTH2JY">
+      <notes>
+        <note category="file-source" priority="1">templates/Frontend/view/challenge.html.twig:87</note>
+        <note category="file-source" priority="1">src/Controller/Frontend/ChallengeController.php:168</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>1 point|%count% points</source>
+        <target>{0} 0 bodů|{1} 1 bod|{2-4} %count% body|{5 - Inf} %count% bodů</target>
+      </segment>
+    </unit>
+    <unit id="Z6Nf3V7">
+      <notes>
+        <note category="file-source" priority="1">src/Twig/CountdownExtension.php:41</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>1 day|%count% days</source>
+        <target>{0} 0 dnů|{1} 1 den|{2-4} %count% dny|{5 - Inf} %count% dnů</target>
+      </segment>
+    </unit>
+    <unit id="xp1rEnu">
+      <notes>
+        <note category="file-source" priority="1">src/Twig/CountdownExtension.php:42</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>1 hour|%count% hours</source>
+        <target>{0} 0 hodin|{1} 1 hodina|{2-4} %count% hodiny|{5 - Inf} %count% hodin</target>
+      </segment>
+    </unit>
+    <unit id="VpeVK0R">
+      <notes>
+        <note category="file-source" priority="1">src/Twig/CountdownExtension.php:43</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>1 minute|%count% minutes</source>
+        <target>{0} 0 minut|{1} 1 minuta|{2-4} %count% minuty|{5 - Inf} %count% minut</target>
+      </segment>
+    </unit>
+    <unit id="_x1fpCj">
+      <notes>
+        <note category="file-source" priority="1">src/Twig/CountdownExtension.php:44</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>1 second|%count% seconds</source>
+        <target>{0} 0 vteřin|{1} 1 vteřina|{2-4} %count% vteřiny|{5 - Inf} %count% vteřin</target>
+      </segment>
+    </unit>
+    <unit id="gXhRJsP">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/ChallengeController.php:55</note>
+        <note category="file-source" priority="1">src/Controller/Frontend/ChallengeController.php:99</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Challenge has ended.</source>
+        <target>Výzva skončila.</target>
+      </segment>
+    </unit>
+    <unit id="tEjYTtd">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/ChallengeController.php:106</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Error occurred, please refresh the page.</source>
+        <target>Nastala chyba, prosím obnovte stránku.</target>
+      </segment>
+    </unit>
+    <unit id="4Lv3STj">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/ChallengeController.php:109</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>You have already finished this challenge.</source>
+        <target>Tato výzva je již splněna.</target>
+      </segment>
+    </unit>
+    <unit id="6rHen5O">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:88</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Your account was already verified.</source>
+        <target>Váš účet byl již ověřen.</target>
+      </segment>
+    </unit>
+    <unit id="AAc.ZAc">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:96</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Robinson verify account</source>
+        <target>Ověření e-mailové adresy</target>
+      </segment>
+    </unit>
+    <unit id="Qu8TSDN">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:104</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>We'll send you instructions how to finish verification process. If you do not receive an email from us, please check your spam folder.</source>
+        <target>Zašleme Vám informace k dokončení registrace. Pokud email ve schránce neobjevíte, zkontrolujte prosím složku nevyžádané pošty.</target>
+      </segment>
+    </unit>
+    <unit id="b9ctVbP">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:154</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Robinson account registered</source>
+        <target>Účet byl registrován</target>
+      </segment>
+    </unit>
+    <unit id="Kbij071">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:162</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Thank you for creating new account. We'll send you instructions on how to finish registration process. If you do not receive an email from us, please check your spam folder.</source>
+        <target>Děkujeme za registraci. Na uvedenou e-mailovou adresu Vám zašleme informace k dokončení registrace. Pokud email ve schránce neobjevíte, zkontrolujte prosím složku nevyžádané pošty.</target>
+      </segment>
+    </unit>
+    <unit id="47DEQpj">
+      <segment>
+        <source></source>
+        <target></target>
+      </segment>
+    </unit>
+    <unit id="GZwQOGQ">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:331</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>New password can not be same as old password</source>
+        <target>Nové heslo nemůže být stejné jako původní heslo</target>
+      </segment>
+    </unit>
+    <unit id="guTJxEk">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:333</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Current password is not valid.</source>
+        <target>Zadané heslo není správné.</target>
+      </segment>
+    </unit>
+    <unit id="NXVyXNw">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:344</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Password changed</source>
+        <target>Heslo změněno</target>
+      </segment>
+    </unit>
+    <unit id="1vERoVD">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:353</note>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:421</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Your password was successfully changed.</source>
+        <target>Vaše heslo bylo úspěšně změněno.</target>
+      </segment>
+    </unit>
+    <unit id="a0a620w">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:394</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Url is not valid. Please generate new reset token</source>
+        <target>Platnost adresy vypršela. Prosím nechte si vygenerovat nový odkaz</target>
+      </segment>
+    </unit>
+    <unit id="5CkbT9L">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:398</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Password can not be reset. Log in with facebook account instead.</source>
+        <target>Heslo nejde obnovit. Přihlašte se pomocí facebook účtu.</target>
+      </segment>
+    </unit>
+    <unit id="ax3l3N1">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:472</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Please confirm email provided during registration at first.</source>
+        <target>Nejprve potvrďte email zadaný během registrace.</target>
+      </segment>
+    </unit>
+    <unit id="7IQm940">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:479</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Password reset requested</source>
+        <target>Obnovení hesla</target>
+      </segment>
+    </unit>
+    <unit id="jsL.3Hv">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:486</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Your account was registered via Facebook. Please login via FB.</source>
+        <target>Váš účet byl vytvořen přes facebook. Prosím přihlašujte se i nadále přes facebook.</target>
+      </segment>
+    </unit>
+    <unit id="o9HVl_j">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:493</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>We'll send you instructions on how to reset your password or create an account, if no one is associated with "%s". If you do not receive an email from us, please check your spam folder.</source>
+        <target>Zašleme Vám informace k obnově hesla nebo vytvoření účtu, v případě že e-mail "%s" ještě není registrovaný. Pokud email ve schránce neobjevíte, zkontrolujte prosím složku nevyžádané pošty.</target>
+      </segment>
+    </unit>
+    <unit id="VO5.OtX">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:529</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Url is not complete.</source>
+        <target>Url není kompletní.</target>
+      </segment>
+    </unit>
+    <unit id="mEjY8Ac">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:540</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Email is confirmed</source>
+        <target>Email je potvrzený</target>
+      </segment>
+    </unit>
+    <unit id="tLJ94DM">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:543</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Url is not valid. Please generate new confirmation token on profile page</source>
+        <target>Platnost adresy vypršela. Prosím nechte si vygenerovat nový odkaz na stránce profilu.</target>
+      </segment>
+    </unit>
+    <unit id="ovCtadx">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:612</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>There is already registered account with email %s. Yoo can use your password to login. If you want to use both login methods, you can pair your facebook account.</source>
+        <target>Již existuje účet se e-mailovou adresou %s. Pro přihlášení můžete použít heslo zadané během registrace. Pokud chcete využít oba způsoby přihlašování, lze facebook účet spárovat.</target>
+      </segment>
+    </unit>
+    <unit id="BpjZ6zq">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:620</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Current password is not valid. You can request password recovery from login page.</source>
+        <target>Zadané heslo není správné. Heslo si můžete nechat obnovit na stránce přihlášení.</target>
+      </segment>
+    </unit>
+    <unit id="o.Tmlpi">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:635</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Your account was paired.</source>
+        <target>Váš účet byl spárován.</target>
+      </segment>
+    </unit>
+    <unit id="hfRUcOF">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/Frontend/GuestController.php:685</note>
+        <note category="state" priority="1">new</note>
+      </notes>
+      <segment>
+        <source>Thank you for creating new account.</source>
+        <target>Děkujeme za registraci.</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

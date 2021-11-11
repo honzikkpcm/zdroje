@@ -1,0 +1,52 @@
+<section class="header row dotted-mobile">
+    <div class="header-top col-12">
+        <a href="#" class="header_menu_wrap" id="js_menu_toggler" onclick="toggleMenu();">
+            <span class="header_menu">
+                <span class="header_menu_icon"></span>
+            </span>
+            <div class="clear"></div>
+        </a>
+
+        <a href="/">
+            <img srcset="/frontend/img/logo-lrg.png" alt="Já, Robinson" class="logo">
+        </a>
+
+        <a href="/">
+            <img srcset="/frontend/img/sponzor-lrg.png" alt="Invia - Sponzor pořadu" class="sponzor">
+        </a>
+
+
+        <nav class="header-nav" id="js_menu">
+            <ul>
+                <li>
+                    <a href="{{ path("page-homepage") }}" class="active">Hlavní stránka</a>
+                </li>
+                <li>
+                    <a href="{{ path("page-prizes") }}">Cena</a>
+                </li>
+                <li>
+                    <a href="#">Žebříček</a>
+                </li>
+                <li>
+                    <a href="{{ path("page-rules") }}">Pravidla soutěže</a>
+                </li>
+
+                <li class="blank">&nbsp;</li>
+
+                <li>
+                    <a class="simple" href="http://robinson.nova.cz">Robinsonů ostrov</a>
+                </li>
+                
+                {% if app.user %}
+                    <li>
+                       <a class="simple" href="{{ path("guest_logout") }}">Odhlásit se</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a class="simple" href="{{ path("guest_login") }}">Přihlásit se</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</section>

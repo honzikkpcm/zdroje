@@ -1,0 +1,19 @@
+paths:
+    tests: tests
+    output: tests/_output
+    data: tests/_data
+    support: tests/_support
+    envs: tests/_envs
+actor_suffix: Tester
+extensions:
+    enabled:
+        - Codeception\Extension\RunFailed
+modules:
+    config:
+        Db:
+            dsn: 'pgsql:host=postgres;port=5432;dbname=test'
+            user: 'dev'
+            password: 'dev'
+            dump: tests/_data/dump.sql
+            populate: true
+            cleanup: true

@@ -1,0 +1,49 @@
+html, body{
+	background: url("../img/bg.jpg") #000 no-repeat top center;
+	font-size: 10px;
+
+	.container:first-of-type{
+		background: url("../img/header.jpg") #036387 no-repeat top center;   	
+		max-width: 1000px;
+		box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
+		overflow: hidden;
+
+		@media screen and (max-width: 767px){
+			background: url("../img/header-sml.jpg") #036387 no-repeat top center;   	
+		}
+	}
+
+	.dotted, .dotted-mobile{
+		&:after{
+			content: " ";
+			display: inline-block;
+			height: 1px;
+			width: ~"calc(100% - 40px)";
+			margin: 0 auto;    		
+			margin-top: 4rem;
+			background: url("../img/dashed.png") repeat-x;
+
+			@media screen and (max-width: 767px){
+				width: 100%;
+			}
+		}
+	}
+	
+	@media screen and (min-width: 768px){
+		.dotted-mobile:after{
+			display: none;
+		}
+	}
+
+	.clear{
+		clear:both;
+		display: table;
+		height: 1px;
+	}
+
+	.center-block{
+		margin: 0 auto;
+		display: block;
+		float: none;
+	}
+}

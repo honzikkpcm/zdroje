@@ -1,0 +1,165 @@
+.form{
+	&-group{
+		position: relative;
+		margin-bottom: 30px;
+	}
+
+	&-button{
+		font-family: @fontbold;
+		padding: 0 55px;
+		line-height: 5.5rem;
+		font-size: 2.5rem;
+		text-transform: uppercase;
+		transition: .4s all ease-out;
+		position: relative;
+		border: 0;
+		z-index: 100;
+		display: inline-block;
+		border-radius: 5px;	
+		background: rgb(57,199,211); /* Old browsers */
+		background: -moz-linear-gradient(top, rgba(57,199,211,1) 0%, rgba(23,169,186,1) 39%, rgba(15,153,171,1) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, rgba(57,199,211,1) 0%,rgba(23,169,186,1) 39%,rgba(15,153,171,1) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, rgba(57,199,211,1) 0%,rgba(23,169,186,1) 39%,rgba(15,153,171,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#39c7d3', endColorstr='#0f99ab',GradientType=0 ); /* IE6-9 */	
+	    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
+	
+		@media screen and (max-width: 767px){
+			font-size: 2rem;
+			line-height: 4.5rem;
+			padding: 0 45px;
+		}
+	
+		&:before {
+			border-radius: inherit;
+			background: rgb(15,153,171); /* Old browsers */
+			background: -moz-linear-gradient(top, rgba(15,153,171,1) 0%, rgba(23,169,186,1) 39%, rgba(57,199,211,1) 100%); /* FF3.6-15 */
+			background: -webkit-linear-gradient(top, rgba(15,153,171,1) 0%,rgba(23,169,186,1) 39%,rgba(57,199,211,1) 100%); /* Chrome10-25,Safari5.1-6 */
+			background: linear-gradient(to bottom, rgba(15,153,171,1) 0%,rgba(23,169,186,1) 39%,rgba(57,199,211,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0f99ab', endColorstr='#39c7d3',GradientType=0 ); /* IE6-9 */	
+			box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
+			content: '';
+			display: block;
+			height: 100%;
+			position: absolute;
+			top: 0; left: 0;
+			opacity: 0;
+			width: 100%;
+			z-index: -100;
+			transition: opacity 0.45s;
+		  }
+		  
+		&:hover {
+			text-decoration: none;
+			color: #FFF;
+
+			&:before {
+				opacity: 1;
+			}
+		}
+
+		&-facebook{
+			font-size: 1.8rem;
+			line-height: 2rem;
+			padding: 10px 15px 10px 50px;
+			white-space: nowrap;
+
+			&:after{
+			content: " ";
+			width: 27px;
+			height: 27px;
+			display: block;
+			position: absolute;
+			left: 10px;
+			top: 50%;
+			margin-top: -13.5px;
+			background-image: url("../img/fb-icon.png");   	
+			}
+		}
+	}
+
+	&-challenge-button{
+		border: 1px #05626c solid;
+		border-radius: 5px;
+		line-height: 3rem;
+		font-size: 1.2rem;
+		font-family: @fontsemibold;
+		color: #ffffff;
+		display: block;
+		background: #1bb3c3;
+		text-transform: uppercase;
+		text-align: center;
+		transition: .4s all;
+		cursor: pointer;
+		cursor: hand;
+
+		&:hover{
+			background: #05626c;
+			border-color: #1bb3c3;
+			text-decoration: none;
+			color: #fff;
+		}
+	}
+
+	input[type="email"], input[type="password"], input[type="text"]{
+		line-height: 4rem;
+		padding: 0 20px;
+		color: #555;
+		font-size: 1.6rem;
+		outline: none;
+		z-index: 20;
+		height: 4rem;
+		border: 0;
+			
+		& ~ label{
+			color: #555;
+			font-size: 1.6rem;
+			line-height: 2rem;
+		    pointer-events: none;
+		    z-index: 10;
+		    position: absolute;
+		    top: 10px;
+		    left: 0;
+		    padding-left: 20px;
+		    transition: .4s all ease-in-out; 
+		}
+
+		&:focus, &:valid{
+			& ~ label{
+				top: -25px;
+				color: #fff;
+			}
+		} 
+	}
+
+	input[type=email].not-empty  ~ label{
+		top: -25px;
+		color: #fff;
+	}
+
+	.checker{
+		background-image: url("../img/checkbox.png");
+		background-position: left center;
+		background-size: auto 100%;
+		width: 18px;
+		height: 18px;
+		background-repeat: no-repeat;
+		transition: .3s background-position ease-out;
+		border-radius: 3px;
+		
+		& ~ label{
+			color: #33E5F5;
+			font-size: 1.6rem;
+			padding-left: 15px;
+			position: relative;
+			top: -3px;
+		}
+	}
+
+	input[type=checkbox]{
+		display: none;
+		
+		&:checked + .checker {
+	  		background-position: right center;
+		}
+	}
+}

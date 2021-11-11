@@ -1,0 +1,80 @@
+{% extends 'Frontend/layout.html.twig' %}
+{% block content %}
+
+<section class="jumbotron row text-center dotted">
+    <div class="col-12">
+        <h1>Staň se&nbsp;největším odborníkem Robinsona 
+            <span>a&nbsp;vyhraj zájezd pro 2&nbsp;osoby v&nbsp;hodnotě 150&nbsp;000,-</span></h1>
+    </div>
+
+    <div class="col-12">
+        <a href="{{ path('guest_register') }}" class="form-button">Chci soutěžit</a>
+    </div>
+</section>
+
+<section class="howto row text-center dotted">
+    <div class="col-12">
+        <h2>Jak soutěžit</h2>
+    </div>
+
+    <div class="col-4 howto-play first">
+        <p>
+            <img src="/frontend/img/ico1.png" width="55" height="55" alt="Registruj se" />
+        </p>
+        <span>Registruj se</span>
+    </div>
+
+    <div class="col-4 howto-play">
+        <p>
+            <img src="/frontend/img/ico2.png" width="55" height="55" alt="Odpověz na otázky" />
+        </p>
+        <span>Odpověz na otázky</span>
+    </div>
+
+    <div class="col-4 howto-play last">
+        <p>
+            <img src="/frontend/img/ico1.png" width="55" height="55" alt="Vyhraj" />
+        </p>
+        <span>Vyhraj</span>
+    </div>
+
+    <div class="col-12 text-right ">
+        <a href="#" class="blue arrow">Pravidla soutěže<i class="fa fa-angle-right"></i></a>
+    </div>
+</section>
+
+<section class="top row justify-content-center dotted">
+    <div class="col-12 text-center">
+        <h2>Žebříček <b>TOP10</b></h2>
+    </div>
+
+    <div class="col-8 mw-300">
+        {% include 'Frontend/block/top-players.html.twig' %}
+    </div>
+
+    <div class="col-12 text-right">
+        <a href="#" class="blue arrow">Celý žebříček<i class="fa fa-angle-right"></i></a>
+    </div>
+</section>
+
+<section class="quiz row dotted">
+    <div class="col-12 text-center">
+        <h2>Sortable picturez quiz</h2>
+    </div>
+
+    <div class="col-12">
+        {% include 'Frontend/block/sortable-quiz.html.twig' %}
+    </div>
+</section>
+
+<section class="quiz row">
+    <div class="col-12 text-center">
+        <h2>Selectable picturez quiz</h2>
+    </div>
+
+    <div class="col-12">
+        {% include 'Frontend/block/selectable-quiz.html.twig' %}
+    </div>
+</section>
+
+{% endblock %}

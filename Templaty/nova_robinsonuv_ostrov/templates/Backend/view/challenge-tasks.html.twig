@@ -1,0 +1,72 @@
+{% extends 'Backend/layout.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block h1 %}
+    {% if h1 is defined %}
+        {{ h1|trans }}
+    {% else %}
+        {{ title|trans }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">{{ 'Select task you want to add'|trans }}</h3>
+                </div>
+                <div class="box-body">
+                    <a href="{{ path('challenge-task-add', {'type': 'quiz-abcd', 'challengeId': id}) }}" class="btn btn-app action-modal">
+                        <i class="fa fa-cubes"></i> {{ 'ABCD quiz'|trans }}
+                    </a>
+                    <a href="{{ path('challenge-task-add', {'type': 'quiz-photo', 'challengeId': id}) }}" class="btn btn-app action-modal">
+                        <i class="fa fa-image"></i> {{ 'Photos quiz'|trans }}
+                    </a>
+                    <a href="{{ path('challenge-task-add', {'type': 'order-photos', 'challengeId': id}) }}" class="btn btn-app action-modal">
+                        <i class="fa fa-list-ol"></i> {{ 'Order photos'|trans }}
+                    </a>
+                    <a href="{{ path('challenge-task-add', {'type': 'select-photo', 'challengeId': id}) }}" class="btn btn-app action-modal">
+                        <i class="fa fa-hand-o-up"></i> {{ 'Select photo'|trans }}
+                    </a>
+                    <a href="{{ path('challenge-task-add', {'type': 'word', 'challengeId': id}) }}" class="btn btn-app action-modal">
+                        <i class="fa fa-edit"></i> {{ 'Word'|trans }}
+                    </a>
+                    <a href="{{ path('challenge-task-add', {'type': 'photo', 'challengeId': id}) }}" class="btn btn-app action-modal">
+                        <i class="fa fa-camera-retro"></i> {{ 'Photo'|trans }}
+                    </a>
+                    <a href="{{ path('challenge-task-add', {'type': 'video', 'challengeId': id}) }}" class="btn btn-app action-modal">
+                        <i class="fa fa-video-camera"></i> {{ 'Video'|trans }}
+                    </a>
+                    <a href="{{ path('challenge-task-add', {'type': 'guess', 'challengeId': id}) }}" class="btn btn-app action-modal">
+                        <i class="fa fa-hand-scissors-o"></i> {{ 'Guess'|trans }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{ grid(grid['data'], grid['columns'], grid['setting']) }}
+
+    <script>
+    $(function(){
+        try {
+            $('a.action-modal').fancybox({
+                type: 'ajax',
+                title: false,
+                padding: 0,
+                width: '800px',
+                height: '800px',
+                'max-height': '80%',
+                autoSize: false,
+                afterLoad: function (current, previous) {
+                    if ((typeof current.content == 'string') && (current.content.indexOf('{"redirect') == 0)) {
+                        var obj = jQuery.parseJSON(current.content);
+                        window.location = obj.redirect;
+                    }
+                }
+            });
+        } catch (err) {}
+    });
+    </script>
+{% endblock %}

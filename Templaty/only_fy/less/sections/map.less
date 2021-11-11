@@ -1,0 +1,165 @@
+#map{
+	height:900px;
+	position: absolute;
+	width:100%;
+	
+	@media (max-width: 767px){
+		height: 700px;
+	}
+
+	@media (max-width: 500px){	
+		height: 500px;
+	}	
+}
+.map{
+	height: 900px;
+	margin-top: -30px;
+	padding-top: 30px;
+	position: relative;
+	
+	a[target="_blank"], .gmnoprint{
+		display: none !important;
+	}
+
+	@media (max-width: 767px){
+		height: 700px;
+	}
+
+	@media (max-width: 500px){	
+		height: 500px;
+	}
+
+	h2{
+		padding: 30px;
+	}
+
+	p{
+		padding-bottom: 10px;
+		font-size: 1.6rem;
+	}
+	.mw520{
+		max-width: 520px;
+		margin: 0 auto;
+		position: relative;
+
+		@media (max-width: 768px){
+			max-width: none;	
+
+			.col-md-4{
+				width:33%;
+			    padding: 0 2px;				
+			}
+
+		}
+
+		#locateMe{
+			position: absolute;
+			right: -220px;
+			font-size: 1.6rem;
+			color: #000;
+			top: 10px;
+
+			width:100%;
+			text-align: center;
+			position: relative;
+			right: initial;
+			display: block;
+
+
+			&:before{
+				content: " ";
+				height: 15px;
+				width: 15px;
+				display: inline-block;
+				margin-right: 4px;
+				background: url("../img/locate.svg") no-repeat center;
+			}
+		}
+
+	}
+
+	select{
+		width: 100%;
+		padding: 5px;
+		font-size: 1.4rem;
+		position: relative;
+		top: 3px;
+	}
+
+	.selectBox{		
+		&-arrow{
+			position: absolute;
+			display: inline-block;
+			right: -15px;
+			height: 42px;
+			width: 42px;
+			top: 0;
+			background: url("../img/arrow_down_expand_icon_128.svg") no-repeat center;
+    		background-size: 50%;
+    	}	
+
+    	&.selectBox-menuShowing{
+    		.selectBox-arrow{
+				background: url("../img/arrow_collapse_up_icon_128.svg") no-repeat center;    					
+	    		background-size: 50%;
+    		}
+    	}	
+	}
+
+	&_promo{
+		background: #c60000; /* Old browsers */
+		background: -moz-linear-gradient(top, #c60000 0%, #830b0b 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, #c60000 0%,#830b0b 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, #c60000 0%,#830b0b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c60000', endColorstr='#830b0b',GradientType=0 ); /* IE6-9 */
+		margin-top:30px; 
+		text-align:center;
+
+		@media (max-width: 1300px){		
+			padding-top: 24px;			
+		}		
+	
+		h2{
+			color: #fff;
+			display:inline-block;
+			padding-right: 40px;
+			font-size: 1.6rem !important;
+
+			strong{
+				font-size: 1.6rem !important;					
+			}
+
+			@media (max-width: 1300px){
+				padding-right: 10px;
+				line-height: 2.6rem;
+				text-align: left !important;
+				width: ~"calc(100% - 170px)";
+				vertical-align: middle;
+				
+				strong:first-of-type{
+					display: block;
+				}				
+			}
+
+
+			@media screen and (max-width: 500px){
+				width: 100%;
+				text-align: center !important;	
+				padding-bottom: 20px;
+			}
+
+		}
+
+		a{
+			display: inline-block;
+			font-size: 1.6rem !important;
+
+			@media (max-width: 1300px){
+				display: inline-block;
+				vertical-align: middle;
+			}
+
+		}
+	}
+}
+

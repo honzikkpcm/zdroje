@@ -1,0 +1,42 @@
+.quiz {
+    h2{
+        padding-top: 40px;
+    }
+
+    &-sortable, &-selectable{
+        width:570px;
+        margin:0 auto;
+
+        @media screen and (max-width: 590px){
+            width:380px;
+        }
+    }
+
+    &-picture{
+        width: 150px;
+        height: 150px;
+        line-height: 100px;
+        text-align: center;
+        background: #ebebeb;
+        color: black;
+        position: relative;
+        float:left;
+        margin:20px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        
+        &.selected{
+            border: 5px black solid;
+        }
+
+        &.ui-sortable-helper{
+            box-shadow: 0px 0px 5px 1px rgba(255, 255, 255, 0.3);
+        }
+    }
+    .ui-sortable-placeholder{
+        border: 2px #fff solid;
+        visibility: visible !important;
+        background: transparent;
+    }
+}

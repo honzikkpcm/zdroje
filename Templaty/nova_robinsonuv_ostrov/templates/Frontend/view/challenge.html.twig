@@ -1,0 +1,96 @@
+{% extends '/Frontend/layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(function() {
+            var initial = {{ data|json_encode|raw }},
+                processUrl = '{{ processUrl }}';
+            if (initial.isFinished) {
+                renderEvaluation(initial);
+            } else {
+                renderForm(initial);
+            }
+
+            function renderEvaluation(data) {
+                var $tasks = $('#tasks').html('<pre>' + JSON.stringify(data) + '</pre>');
+            }
+
+            function renderForm(data) {
+                var $tasks = $('#tasks').html('');
+                data['tasks'].forEach(function(task) {
+                    console.log(task);
+                    var cssid = 'task_'+task.id;
+                    $tasks.append(
+                          '<div class="task" id="' + cssid +'">'
+                            + '<h3>' + task.label + '</h3>'
+                            + '<p>' + task.description + '</p>'
+                            + renderWidget(task)
+                        + '</div>'
+                    );
+                });
+                $('<input type="submit" value="{{ 'Evaluate' |trans }}"/>').appendTo($tasks);
+                $tasks.submit(submit);
+            }
+
+            function renderWidget(task) {
+                // return '<div>'
+                //     + task.options.map(function (option, i) {
+                //         return '<label >'
+                //                 + option.label
+                //                 + '<input type="radio" name="tasks[' + task.id + ']" value="' + i + '" />'
+                //                 + '</label><br>'
+                //     }).join('')
+                //     + '</div>';
+            }
+
+            function submit(e) {
+                // post data format
+                // var data = {
+                //     "answers": {
+                //         "<task-id>":"<answer>",
+                //         ...
+                //     }
+                // };
+                //
+                // var response = {
+                //     "success": true|false,
+                //     "data": {
+                //         "score": <score>
+                //     }
+                // }
+                //
+
+                // e.preventDefault();
+                // $.post(processUrl, data, function(response) {
+                // });
+            }
+        });
+    </script>
+{% endblock %}
+{% block content %}
+
+    <div class="row">
+        <div class="col-8">
+            {% include 'Frontend/block/flash.html.twig' %}
+            <a href="{{ path('guest_profile') }}">{{  'back to challenges' | trans }}</a>
+            <h1>{{ challenge.name }}</h1>
+            {% if not challenge.isValid%}
+                <p>{{ 'Challenge has ended' | trans }}</p>
+            {% else  %}
+                <p>
+                    {{ 'Ends in:' | trans }}
+                    <strong> {{ challenge.endsIn | countdown }} </strong>
+                </p>
+            {% endif %}
+            <p><strong>{{ '1 point|%count% points'  |transchoice(challenge.maxScore) }}</strong></p>
+            <p>{{ challenge.description }}</p>
+            <form id="tasks"></form>
+            <p><a class="btn btn-primary" href="{{ path('guest_profile') }}">{{  'back to challenges' | trans }}</a></p>
+        </div>
+        <div class="col-4">
+            {% include 'Frontend/block/top-players.html.twig' %}
+        </div>
+    </div>
+{% endblock %}

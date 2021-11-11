@@ -1,0 +1,54 @@
+security:
+    encoders:
+        App\Entity\Guest: bcrypt
+        App\Entity\Staff: bcrypt
+    providers:
+        database_guests:
+            entity: { class: App\Entity\Guest, property: email }
+        database_staff:
+            entity: { class: App\Entity\Staff, property: email }
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        admin:
+            pattern: ^/admin/
+            anonymous: ~
+            guard:
+                authenticators:
+                    - App\Security\BackendLoginAuthenticator
+            provider: database_staff
+            logout:
+                path: /admin/staff/logout
+                target: /admin/staff/login
+                success_handler:      ~
+                invalidate_session:   true
+        main:
+            anonymous: ~
+            provider: database_guests
+            guard:
+                authenticators:
+                    - App\Security\FrontendLoginAuthenticator
+            oauth:
+                oauth_user_provider:
+                    service: App\Security\OAuthUserProvider
+                resource_owners:
+                    facebook: /guest/fb/login/check-facebook
+                login_path: /guest/login
+                failure_path: /guest/connect-facebook
+                default_target_path: /guest/profile
+            logout:
+                path: /guest/logout
+                target: /
+                success_handler:      ~
+                invalidate_session:   true
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_EDITOR
+    access_control:
+        - { path: ^/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/guest/(profile|change-password|resend-verification-email), role: ROLE_GUEST }
+        - { path: ^/guest/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/challenge/, role: ROLE_PLAYER }
+        - { path: ^/admin/staff/(login|request-password-reset|reset-password), role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/($|article|challenge), role: ROLE_EDITOR }
+        - { path: ^/admin/, role: ROLE_ADMIN }

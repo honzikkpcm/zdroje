@@ -1,0 +1,12 @@
+actor: FunctionalTester
+modules:
+    enabled:
+        - Db
+        - Asserts
+        - \Helper\Functional
+        - Symfony:
+            app_path: 'src'
+            environment: 'test'
+            debug: true
+        - Doctrine2:
+            depends: Symfony

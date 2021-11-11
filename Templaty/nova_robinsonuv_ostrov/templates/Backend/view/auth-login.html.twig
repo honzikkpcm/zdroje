@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="{{ asset('backend/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/bootstrap-theme.min.css') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('backend/css/font-awesome.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('backend/css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/skins/skin-blue.min.css') }}">
+    <!-- jQuery 3 -->
+    <script src="{{ asset('backend/js/jquery.min.js') }}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{ asset('backend/js/bootstrap.min.js') }}"></script>
+    <title>{{ 'Login' | trans }}</title>
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="login-logo"><b>R</b>obinson</div>
+    <!-- /.login-logo -->
+    <div class="login-box-body panel">
+        <p class="login-box-msg">{{ 'Sign in'|trans }}</p>
+
+        {% include 'Backend/block/flash.html.twig' %}
+        {% if error %}
+            <div class="alert alert-error" >
+                {{ error.messageKey|trans(error.messageData) }}
+            </div>
+        {% endif %}
+
+        <div id="login-wrapper">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+
+        <a class="btn" data-toggle="collapse" href="#reset-wrapper">{{ 'I forgot my password'|trans }}</a>
+        <div class="panel collapse" id="reset-wrapper">
+            {{ form_start(passwordResetForm) }}
+            {{ form_widget(passwordResetForm) }}
+            {{ form_end(passwordResetForm) }}
+        </div>
+
+        <script>
+        $(function(){
+            $('.form-group').addClass('has-feedback');
+            $('#email, #form_email').after('<span class="glyphicon glyphicon-envelope form-control-feedback"></span>');
+            $('#password').after('<span class="glyphicon glyphicon-lock form-control-feedback"></span>');
+            $('#email')
+                .change( function(){document.getElementById('form_email').value = this.value} )
+                .change();
+            if (location.hash == '#reset-wrapper') {
+                $('#reset-wrapper').show();
+            }
+        });
+        </script>
+    </div>
+    <!-- /.login-box-body -->
+</div>
+</body>
+</html>

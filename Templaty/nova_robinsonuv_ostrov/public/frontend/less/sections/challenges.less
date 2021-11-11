@@ -1,0 +1,200 @@
+.challenge{
+	padding-left: 4%;
+	
+	h2{
+		padding-top: 40px;
+		padding-bottom: 15px;
+	}
+	
+	&-list{
+		list-style:none;
+		background: #1b7fa5;
+	
+		li{
+			padding: 20px 15px;
+			font-size: 0;
+
+			&:not(:last-child):after{
+				content: " ";
+				display: inline-block;
+				height: 1px;
+				width: 100%;
+				margin: 0 auto;    		
+				margin-top: 20px;
+    			margin-bottom: -20px;
+				background: url("../img/dashed.png") repeat-x;
+			}
+		}
+
+		&:last-of-type{
+			margin-bottom: 150px;
+		}
+
+		&.completed{
+			.challenge-points{
+				margin-right: 0;
+
+				&:not(.total){
+					border-right: 0;
+					background: #33e5f5;
+	
+					*{
+						color: #036387;
+					}
+				}
+
+				&.total{
+					border-left: 0;
+					vertical-align: top;
+					font-size: 1.4rem;
+					padding-top: 6px;
+					padding-left: 3px;
+					margin-right: 10px;
+
+					span{
+						font-size: 2rem;
+						display: inline;
+						top: 0;
+					}
+				}
+			}
+
+			.challenge-info{
+				width: calc(100% - 225px);
+				
+				.completed{
+					&:before{
+						content: " ";
+						height: 15px;
+						width: 15px;
+						background: url("../img/ok-icon.png") no-repeat center;
+						display: inline-block;
+						margin-right: 7px;
+						position: relative;
+						top: 2px;
+					}
+				}
+			}
+		}
+	}
+
+	&-points{
+		width: 45px;
+		height: 45px;
+		border: 1px #fff solid;
+		display: inline-block;
+		margin-right: 10px;
+		
+		b{
+			color: #33E5F5;
+			font-size: 2.8rem;
+			line-height: 2.8rem;
+			display: block;
+			width: 100%;
+			text-align: center;
+			font-family: @fontbold;
+		}
+
+		span{
+			display: block;
+			width: 100%;
+			text-align: center;
+			font-size: 1.2rem;
+			color: #FFF;
+			font-family: @fontmedium;
+			position: relative;
+			top: -2px;
+		}
+	}
+
+	&-info{
+		width: ~"calc(100% - 180px)";
+		display: inline-block;
+		vertical-align: top;
+		
+		h3{
+			padding-top: 2px;
+			padding-bottom: 3px;
+			font-family: @fontbold;
+			
+			span{
+				color: #FFF70F;
+				font-family: @fontbold;
+			}
+		}
+
+		.odpocet{
+			&:before{
+				content: " ";
+				height: 15px;
+				width: 13px;
+				background: url("../img/hours-icon.png") no-repeat center;
+				display: inline-block;
+				margin-right: 7px;
+				position: relative;
+				top: 2px;
+			}
+		}
+	}
+
+
+	&-actions{
+		display: inline-block;
+		width: 115px;
+		margin-left: 10px;
+		vertical-align: top;
+    	padding-top: 7px;
+    	
+    	i{
+    		color: #FFF70F;
+    		font-size: 1.2rem;
+    	}
+    }
+
+    &-bonus{
+    	.form{
+			margin-top: 30px;
+			
+			&:before{
+				content: " ";
+				height: 26px;
+				width: 20px;
+				background: url("../img/lock.png") no-repeat center;
+				display: inline-block;
+				margin-right: 15px;
+				position: relative;
+				top: 5px;
+			}
+
+			&-group{
+				display: inline-block;
+				width: ~"calc(100% - 40px)"; 
+				margin-bottom: 0;
+			}
+
+			&-input{
+				width: ~"calc(100% - 40px)";
+				display: inline-block;
+				border: 1px #05626c solid !important;
+				border-radius: 5px;	
+				
+				& ~ label{
+				    margin-top: 2px;
+				}			
+			}
+
+			&-challenge-button.arrow{
+				display: inline-block;
+				width: 30px;
+				line-height: 3rem;
+				font-size: 2rem;
+				outline: none;
+				box-sizing: border-box;
+				height: 4rem;
+				top: 2px;
+				margin-left: 5px;
+				position: relative;
+			}
+    	}
+    }
+}

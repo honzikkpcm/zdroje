@@ -1,0 +1,136 @@
+<div class="box">
+    {% if title %}
+    <div class="box-header"><h3 class="box-title">{{ title }}</h3></div>
+    {% endif %}
+    <div class="box-body">
+    {% if data %}
+        <table id="{{ id }}" class="table table-bordered table-striped dataTable" role="grid" width="100%"></table>
+    {% else %}
+        {% if actionAddUrl %}
+            <span>{{ 'No data found.'|trans }}</span>
+            <a href="{{ actionAddUrl }}" class="btn btn-primary pull-right action-modal">{{ 'Add item'|trans }}</a>
+        {% else %}
+            {{ 'No data found.'|trans }}
+        {% endif %}
+    {% endif %}
+    </div>
+</div>
+<script type="text/javascript">
+{% if data %}
+    var source = [
+        {%- for dataItem in data -%}
+            {{ '{' }}
+            {%- for dataItemKey,dataItemItem in dataItem -%}
+                {{- dataItemKey -}}:{{ '"' }}
+                {%- if columns[dataItemKey]['type'] is defined -%}
+                    {%- if columns[dataItemKey]['type'] == 'date' -%}
+                        {{- dataItemItem|date(dateFormat) -}}
+                    {%- elseif columns[dataItemKey]['type'] == 'datetime' -%}
+                        {{- dataItemItem|date(datetimeFormat) -}}
+                    {%- elseif columns[dataItemKey]['type'] == 'html' -%}
+                        {{- dataItemItem|raw -}}
+                    {%- else -%}
+                        {{- dataItemItem -}}
+                    {%- endif -%}
+                {%- else -%}
+                    {{- dataItemItem -}}
+                {%- endif -%}
+                {{ '"' }}
+                {%- if loop.last == false -%},{%- endif -%}
+            {%- endfor -%}
+            {{ '}' }}
+            {%- if loop.last == false -%},{%- endif -%}
+        {%- endfor -%}
+    ];
+
+    $(function(){
+        $("#{{ id }}").dataTable({
+            data: source,
+            renderer: "bootstrap",
+            drawCallback: function () {
+                try {
+                    $('a.action-modal').fancybox({
+                        type: 'ajax',
+                        title: false,
+                        padding: 0,
+                        width: '800px',
+                        height: '800px',
+                        'max-height': '80%',
+                        autoSize: false,
+                        afterLoad: function (current, previous) {
+                            if ((typeof current.content == 'string') && (current.content.indexOf('{"redirect') == 0)) {
+                                var obj = jQuery.parseJSON(current.content);
+                                window.location = obj.redirect;
+                            }
+                        }
+                    });
+                } catch (err) {}
+            },
+            pageResize: true,
+            {% if disableOrdering is defined and disableOrdering %}
+                ordering: false,
+            {% endif %}
+            columns: [
+            {%- for columnKey,columnItem in columns -%}
+                {%- if columnKey == '_actions' -%}
+                {
+                    title: "{%- if columnItem['caption'] is defined -%}{{ columnItem['caption'] }}{%- else -%}{{ 'Actions'|trans }}{%- endif -%}",
+                    data: "id",
+                    orderable: false,
+                    width: "{{ actionWidth }}",
+                    render: function (data, type, full, meta) {
+                        return ''
+                        {%- for actionKey,actionUrl in columnItem['actions'] -%}
+                            {% if actions[actionKey]['key'] is defined and actions[actionKey]['key'] %}
+                            + "<a title='{{ actions[actionKey]['title'] }}' {% if actions[actionKey]['modal'] is defined and actions[actionKey]['modal'] %}class='action-modal'{% endif %} href='{{ actionUrl }}'>".replace("--id--", data)
+                            {% else %}
+                            + '<a title="{{ actions[actionKey]['title'] }}" {% if actions[actionKey]['modal'] is defined and actions[actionKey]['modal'] %}class="action-modal"{% endif %} href="{{ actionUrl }}">'
+                            {% endif %}
+                            + '<i class="fa fa-{{ actions[actionKey]['icon'] }} grid-action-icon"></i>'
+                            + '</a>'
+                        {%- endfor -%}
+                        ;
+                    }
+                }
+                {%- else -%}
+                {
+                    title: "{{ columnItem['caption'] }}",
+                    data: "{{ columnKey }}",
+                    {%- if columnItem['width'] is defined -%}
+                    width: "{{ columnItem['width'] }}",
+                    {%- endif -%}
+                    render: function (data, type, full, meta) {
+                        {% if columnItem['replacement'] is defined %}
+                            var replacement = {{ columnItem['replacement']|json_encode|raw }};
+
+                            // fix empty string
+                            if (!data)
+                                data = 0;
+                            // replace
+                            if (replacement.hasOwnProperty(data))
+                                return replacement[data];
+                            // return empty string for zero
+                            if (data == 0)
+                                return '';
+                            return data;
+                        {% elseif (columnItem['type'] is defined) and (columnItem['type'] == 'html') %}
+                            return $('<textarea />').html(data).text();
+                        {% else %}
+                            return data;
+                        {% endif %}
+                    }
+                }
+                {% endif %}
+                {%- if loop.last == false -%},{%- endif -%}
+            {% endfor %}
+            ],
+            fnStateSave: function (oSettings, oData) {
+                localStorage.setItem('DataTables', JSON.stringify(oData));
+            },
+            fnStateLoad: function (oSettings) {
+                return JSON.parse(localStorage.getItem('DataTables'));
+            }
+        });
+    });
+{% endif %}
+</script>

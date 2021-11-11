@@ -1,0 +1,21 @@
+{% include 'Emails/parts/header.html.twig' %}
+
+<p style="color: #ffffff; font-size: 20px; text-align:center">
+	Byl Vám vytvořen účet pro administraci soutěže Robinson.</p>
+
+<p style="color: #ffffff; font-size: 20px; text-align:center">
+	Vaše uživatelské jméno je <strong>{{ username }}</strong>.</p>
+
+<p style="color: #ffffff; font-size: 20px; text-align:center">
+	Pro nastavení přihlašovacího hesla navštivte odkaz níže:<br><br></p>
+
+<p style="color: #ffffff; font-size: 20px; text-align:center">
+	<a href="{{ url }}" style="color: #ffffff;">nastavení&nbsp;hesla</a><br><br></p>
+
+<p style="color: #ffffff; font-size: 20px; text-align:center">
+	Platnost odkazu je omezana na <strong>jednu hodinu</strong>. Po vypršení jeho platnosti lze vygenerovat <a href="{{ reset_url }}" style="color: #ffffff;">nový&nbsp;odkaz</a>.</p>
+
+<p style="color: #ffffff; font-size: 20px; text-align:center">
+	Po změně hesla se <a href="{{ login_url }}" style="color: #ffffff;">přihlašte</a>.</p><br>
+	
+{% include 'Emails/parts/footer.html.twig' %}

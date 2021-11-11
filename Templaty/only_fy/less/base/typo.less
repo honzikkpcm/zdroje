@@ -1,0 +1,79 @@
+html{
+	font-size: 10px;
+
+	*, a{
+		font-family: @font;
+	}
+}
+
+h1{
+	padding: 0 !important;
+	font-size: 5.2rem !important;
+	
+	b, strong{
+		font-size: 5.2rem !important;
+		font-weight: bold !important;
+	}
+}
+
+h2{
+	font-size: 1.8rem !important;
+	
+	b, strong{
+		font-size: 1.8rem !important;
+		font-weight: bold !important;		
+	}
+}
+
+.button {
+	position: relative;
+	vertical-align: middle;
+	color: #fff;
+	display: inline-block;
+	top: -2px;
+	height: 40px;
+	line-height: 37px;
+	text-align: center;
+	transition: 0.3s;
+	padding: 0 20px;
+	cursor: pointer;
+	border: 1px solid #fff;
+	font-size: 1.6rem;
+	font-weight: bold;
+
+	&:hover{
+		border: 1px #c60000 solid;
+		background: #c60000;
+		color: #fff;
+		text-decoration: none;		
+	}
+
+
+	&.video{
+		border: 1px #000 solid;
+		border-radius: 15px;
+		font-weight: bold;
+		font-size: 1.6rem;
+		color: #000;
+
+		&:before{
+			width: 7px;
+			height: 17px;
+			position: relative;
+			top: 2px;
+			margin-right: 8px;
+			content: " ";
+			display: inline-block;
+			background: url("../img/app-arrow.svg") no-repeat center;
+		}
+
+		&:hover{
+			color: #fff;
+			border: 1px #fff solid;
+			
+			&:before{
+				color: #fff;
+			}
+		}
+	}
+}

@@ -1,0 +1,49 @@
+{% extends 'Frontend/Guest/base.html.twig' %}
+{% form_theme form 'Frontend/form/form-theme.html.twig' %}
+
+{% block content %}
+	{{ parent() }}
+
+	<section class="jumbotron row text-center dotted">
+		<div class="col-12">
+			<h1>Staň se&nbsp;největším odborníkem Robinsona 
+				<span>a&nbsp;vyhraj zájezd pro 2&nbsp;osoby v&nbsp;hodnotě 150&nbsp;000,-</span></h1>
+		</div>
+	</section>
+
+	<section class="login text-center">
+		<div class="row justify-content-center">
+			<div class="col-4 mw-300 form">
+				{{ form_start(form) }}
+		        {{ form_widget(form) }}
+				{{ form_end(form) }}
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-4 mw-300 form">
+				<a href="{{ path('guest_request_password_reset') }}" class="blue arrow">{{ "Forgotten password?" |trans }} <i class="fa fa-angle-right"></i></a>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-4 mw-300">
+				<div>
+					<p class="or">nebo</p>
+					<a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}" class="form-button form-button-facebook">
+						{{ 'Přihlásit přes facebook' | trans }}
+					</a>
+				</div>
+				<div>
+					<a href="{{ path('guest_register') }}" class="blue arrow">{{ "Ještě jsem se nezaregistroval" |trans }} <i class="fa fa-angle-right"></i></a>
+				</div>
+			</div>
+		</div>
+	<script>
+		// temporary mrdka pro simulaci placeholderu
+		$("input[type=email]").addClass("empty");
+	</script>
+
+
+	</section>
+{% endblock %}

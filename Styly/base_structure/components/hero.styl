@@ -1,0 +1,165 @@
+.center-promo
+	z-index: 1;
+	background-size: 153%;
+	transition: 2s all;
+	background-position: center;
+	position: absolute;
+	top: 25px;
+	opacity: .3;
+	left: -4px;
+	width: 994px;
+	height: 994px;
+	display: grid;
+	grid-template-columns: 125px repeat(9, 80px) 125px;
+	grid-template-rows: 125px repeat(9, 80px) 125px;
+	grid-gap: 2px;
+	margin: 0;
+
+	&-wrap
+		transition: 2s all;
+		position: fixed;
+		top: 0;
+		height: 100%;
+		left: 0;
+		width: 100%;
+		top: 0;
+		background-size: 100%;
+		background-position: center;
+		filter: blur(5px);
+
+.section-hero 
+	position: absolute;
+	z-index: 1;
+	overflow: hidden;
+	position: absolute;
+	z-index: 1;
+	height: 100%;
+	width: 994px;
+	height: 994px;
+	margin-left: 0;
+	text-shadow: 2px 0 0 #ffed20, -2px 0 0 #ffed20, 0 2px 0 #ffed20, 0 -2px 0 #ffed20, 1px 1px #ffed20, -1px -1px 0 #ffed20, 1px -1px 0 #ffed20, -1px 1px 0 #ffed20 !important;
+
+	.hero-content 
+		position: relative;
+		z-index: 1;
+		height: 100%;
+		
+	.hero-headline-wrapper 
+		position: absolute;
+		z-index: 4;
+		width: 100%;
+		top: 40%;
+		text-align: center;
+
+	.hero-headline 
+		max-width: 700px;
+		margin-left: auto;
+		margin-right: auto;
+
+.hero-video-container 
+	background-repeat: no-repeat;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-size: cover;
+	background-position: center top;
+	transition: opacity 0.5s ease-in-out;
+
+hero-video 
+	background-size: cover;
+	background-position: center top;
+	display: block;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	height: 100%;
+	width: 100%;
+	min-height: 100%;
+	min-width: 100%;
+
+
+
+.typography-hero-headline 
+	font-size: 80px;
+	line-height: 1;
+	font-weight: 600;
+	letter-spacing: -0.005em;
+	font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+
+
+html.svg-clip-path .section-hero .hero-headline 
+	display: none;
+	opacity: 0;
+	transform: translate3d(0, 25px, 0);
+
+
+.visuallyhidden 
+	position: absolute;
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+	-webkit-clip-path: inset(0px 0px 99.9% 99.9%);
+	clip-path: inset(0px 0px 99.9% 99.9%);
+	overflow: hidden;
+	height: 1px;
+	width: 1px;
+	padding: 0;
+	border: 0;
+
+.text-mask 
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	-webkit-clip-path: url(#text-mask-svg-path);
+	clip-path: url(#text-mask-svg-path);
+	min-height: 160px;
+
+	&-screen 
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+
+	&-canvas-background 
+		display: block;
+		position: absolute;
+		height: auto;
+		z-index: 2;
+		top: 0;
+		width: 510px;
+		left: 50%;
+		transform: translateX(-50%);
+		-webkit-filter: blur(20px) saturate(140%) brightness(300%);
+		filter: blur(20px) saturate(140%) brightness(300%);
+		opacity: 0.8;
+
+	&-svg 
+		position: relative;
+		z-index: 10;
+		width: 100%;
+		height: 160px;
+
+		&-contnet 
+			text-anchor: middle;
+			font-size: 80px;
+			line-height: 1;
+			font-weight: 600;
+			letter-spacing: -0.005em;
+			font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+
+
+.text-mask 
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	background-position: 50% -146px;
+	background-size: 1175px 400px;
+	background-repeat: no-repeat;
+	background-image: url(https://www.apple.com/v/iphone/photography-how-to/d/images/overview/hero_football_fallback_background_large.jpg);
+
+

@@ -1,0 +1,13 @@
+services:
+    httpmock.client:
+        class: Http\Mock\Client
+        public: true
+    httplug.client.default: '@httpmock.client'
+
+    App\Service\MessengerInterface:
+        class: App\Service\SwiftMailerAdapter
+        arguments:
+            - '@swiftmailer.mailer.default'
+            - '@twig'
+            - '@doctrine.orm.default_entity_manager'
+            - {from: 'test@cme.net'}

@@ -1,0 +1,88 @@
+.howto{
+	margin-bottom: 2rem;
+	padding: 2rem;
+
+	&.dotted{
+		margin-top: 2rem;
+	}
+
+	&-play{
+		text-align: center;
+		padding-bottom: 40px;
+
+		@media screen and (max-width: 767px){
+    		flex: 0 0 100%;
+    		max-width: 100%;
+			margin-top: 40px;
+
+			&.first{
+				margin-top: 15px;
+			}
+
+    	}
+
+		p{
+			border-radius: 50%;
+			border: 2px #fff solid;
+			width: 108px;
+			height: 108px;
+			position: relative;
+			display: inline-block;
+			-webkit-animation: pulse-shadow--collection-zoom 2s infinite;
+			animation: pulse-shadow--collection-zoom 2s infinite;
+
+		}
+
+		img{
+			position: absolute;
+			display: block;
+			left: 50%;
+			top: 50%;
+			margin: -27.5px auto auto -27.5px;
+		}
+		
+		span{
+			display: block;
+			font-size: 1.8rem;
+			padding-top: 10px;
+		}
+
+		&:not(.last){
+			&:before, &:after{
+				content: " ";
+				width: 55px;
+				height: 1px;
+				display: block;
+				background: #fff;
+				top: ~"calc(50% - 45px)";
+				position: absolute;
+				right: -10%;
+
+				@media screen and (max-width: 767px){
+					width: 1px;
+					height: 20px;
+					right: initial;
+					left: 50%;
+					top: ~"calc(100% - 15px)";
+				}
+			}
+
+			&:after{
+				font-family: "FontAwesome";
+				content: "\f105";
+				font-size: 2rem;
+				background: transparent;
+				width: auto;
+			    top: calc(50% - 60px);
+				right: ~"calc(-10% - 7px)";
+
+				@media screen and (max-width: 767px){
+					content: "\f107";
+					top: ~"calc(100% - 8px)";
+					width: 0;
+					margin-left: -6px;
+				}
+			}
+		}
+	}
+}

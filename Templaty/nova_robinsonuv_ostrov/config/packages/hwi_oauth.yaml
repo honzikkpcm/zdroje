@@ -1,0 +1,12 @@
+hwi_oauth:
+    firewall_names: [main]
+    resource_owners:
+        facebook:
+            type:                facebook
+            client_id:           '%env(resolve:FB_CLIENT_ID)%'
+            client_secret:       '%env(resolve:FB_CLIENT_SECRET)%'
+            scope:           "email, public_profile"
+            infos_url:       "https://graph.facebook.com/me?fields=id,name,email"
+    connect:
+        confirmation: true
+        account_connector: App\Security\OAuthUserProvider
